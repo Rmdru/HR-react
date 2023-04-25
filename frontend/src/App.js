@@ -1,5 +1,5 @@
 import { React } from "react";
-import { Route, Routes, Link } from "react-router-dom";
+import { Route, Routes, NavLink } from "react-router-dom";
 import { Overview } from "./pages/Overview"
 import { Login } from "./pages/Login"
 import { Register } from "./pages/Register"
@@ -87,11 +87,11 @@ function App() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/vragenlijsten">Vragenlijsten</Nav.Link>
-              <Nav.Link href="/leden">Leden</Nav.Link>
-              <Nav.Link href="/teams">Teams</Nav.Link>
-              <Nav.Link href="/rapportages">Rapportages</Nav.Link>
+              <NavLink className="nav-link" to="/" activeClassName="active">Home</NavLink>
+              <NavLink className="nav-link" to="/vragenlijsten" activeClassName="active">Vragenlijsten</NavLink>
+              <NavLink className="nav-link" to="/leden" activeClassName="active">Leden</NavLink>
+              <NavLink className="nav-link" to="/teams" activeClassName="active">Teams</NavLink>
+              <NavLink className="nav-link" to="/rapportage" activeClassName="active">Rapportage</NavLink>
             </Nav>
           </Navbar.Collapse>
           <div class="account">
