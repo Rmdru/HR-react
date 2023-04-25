@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react";
-import './App.css';
+import React, {useState, useEffect} from "react";
+import "./App.css";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import axios from "axios";
+import Home from "./pages/Home";
+import EnqueteDetails from "./pages/Enquete/EnqueteDetails";
+import EnqueteIndex from "./pages/Enquete/EnqueteIndex";
+import NotFound from "./pages/NotFound/NotFound";
 
-function App() {
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    axios.get("http://127.0.0.1:5000/").then((response) => {
-      setMessage(response.data.message);
-    });
-  }, []);
-
-  return (
-    <div className="App">
-      <h1>{message}</h1>
-    </div>
-  );
+function AppRoutes() {
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/vragenlijst" element={<EnqueteIndex />} />
+            </Routes>
+        </Router>
+    );
 }
 
-export default App;
+export default AppRoutes;
