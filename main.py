@@ -19,7 +19,7 @@ db.init_app(app)
 
 
 # Create the tables
-# import backend.models.userModel
+import backend.models.teamModel
 
 
 
