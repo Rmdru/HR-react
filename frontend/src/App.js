@@ -3,12 +3,12 @@ import { Route, Routes } from "react-router-dom";
 import { Overview } from "./pages/Overview/Overview"
 import { Login } from "./pages/Login/Login"
 import { Register } from "./pages/Register/Register"
-import { EnqueteIndex } from "./pages/Enquete/EnqueteIndex"
+import EnqueteIndex from "./pages/Enquete/EnqueteIndex"
 import { Members } from "./pages/Members/Members"
 import { Teams } from "./pages/Teams/Teams"
 import { Reports } from "./pages/Reports/Reports"
 import { NotFound } from "./pages/NotFound/NotFound"
-import { Header } from "./Partials/Header/Header.js"
+import { Header } from "./components/Partials/Header/Header.js"
 import './App.css';
 
 function App() {
