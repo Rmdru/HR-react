@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { Overview } from "./pages/Overview/Overview"
 import { Login } from "./pages/Login/Login"
 import { Register } from "./pages/Register/Register"
-import EnqueteIndex from "./pages/Enquete/EnqueteIndex"
+import SurveyIndex from "./pages/Survey/SurveyIndex"
 import { Members } from "./pages/Members/Members"
 import { Teams } from "./pages/Teams/Teams"
 import { Reports } from "./pages/Reports/Reports"
@@ -21,7 +21,7 @@ function App() {
       <Route path="/" index element={<Overview />} />
       <Route path="/inloggen" element={<Login />} />
       <Route path="/registreren" element={<Register />} />
-      <Route path="/vragenlijsten" element={<EnqueteIndex />} />
+      <Route path="/vragenlijsten" element={<SurveyIndex />} />
       <Route path="/leden" element={<Members />} />
       <Route path="/teams" element={<Teams />} />
       <Route path="/rapportages" element={<Reports />} />

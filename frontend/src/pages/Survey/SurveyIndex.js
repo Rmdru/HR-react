@@ -1,10 +1,10 @@
 import React from "react";
 import { Header } from "../../components/Partials/Header/Header";
 
-function EnqueteIndex() {
+function SurveyIndex() {
     return (
-        <div id={"EnqueteIndex"}>
-            <div className="container-fluid mt-5">
+        <div id={"SurveyIndex"}>
+            <div className="container mt-5">
                 <div className="top d-flex justify-content-between my-5">
                     <h1>Vragenlijst</h1>
 
@@ -45,4 +45,4 @@ function EnqueteIndex() {
     )
 }
 
-export default EnqueteIndex;
+export default SurveyIndex;
