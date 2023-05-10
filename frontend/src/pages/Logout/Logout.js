@@ -8,8 +8,8 @@ function Logout() {
   const handleLogout = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/user/logout');
-      navigate('/');
+      await axios.get('http://localhost:5000/user/logout');
+      navigate('/inloggen');
     } catch (error) {
       console.error(error);
     }
@@ -17,7 +17,7 @@ function Logout() {
 
   return (
     <div>
-      <h1>Logout</h1>
+      <h1>Weet je zeker dat je wilt uitloggen?</h1>
       <button onClick={handleLogout}>Logout</button>
     </div>
   );

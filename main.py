@@ -18,5 +18,8 @@ db.init_app(app)
 
 app.register_blueprint(user_bp, url_prefix='/user')
 
+# Secret key for the session
+app.secret_key = '1335eb3948fb7b64a029aa29'
+
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, session
 from backend.models.userModel import db, User
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -26,6 +26,14 @@ def login():
     password = data['password']
     user = User.query.filter_by(email=email).first()
     if user and check_password_hash(user.password, password):
+        session['user_id'] = user.id  # Store the user ID in the session
         return jsonify({'message': 'Login successful!'})
     else:
         return jsonify({'message': 'Invalid email or password'}), 401
+
+
+# Logout route
+@user_bp.route('/logout', methods=['GET'])
+def logout():
+    session.pop('user_id', None)  # Remove the user ID from the session
+    return jsonify({'message': 'Logout successful!'})
