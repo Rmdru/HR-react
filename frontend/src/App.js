@@ -4,7 +4,7 @@ import { Overview } from "./pages/Overview/Overview"
 import { Login } from "./pages/Login/Login"
 import { Register } from "./pages/Register/Register"
 import EnqueteIndex from "./pages/Enquete/EnqueteIndex"
-import { Members } from "./pages/Members/Members"
+import MemberList from "./pages/Members/MemberList"
 import { Teams } from "./pages/Teams/Teams"
 import { Reports } from "./pages/Reports/Reports"
 import { NotFound } from "./pages/NotFound/NotFound"
@@ -22,7 +22,7 @@ function App() {
       <Route path="/inloggen" element={<Login />} />
       <Route path="/registreren" element={<Register />} />
       <Route path="/vragenlijsten" element={<EnqueteIndex />} />
-      <Route path="/leden" element={<Members />} />
+      <Route path="/leden" element={<MemberList />} />
       <Route path="/teams" element={<Teams />} />
       <Route path="/rapportages" element={<Reports />} />
       <Route path="/*" element={<NotFound />} />

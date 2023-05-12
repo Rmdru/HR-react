@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, redirect, url_for, flash
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, LoginManager, login_user, login_required, current_user, logout_user
@@ -19,8 +19,11 @@ db.init_app(app)
 
 
 # Create the tables
-import backend.models.teamModel
+import backend.models.team_model
 
+
+# Import api routes
+import backend.routes.member_routes
 
 
 @app.route("/")
