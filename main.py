@@ -19,11 +19,12 @@ db.init_app(app)
 
 
 # Create the tables
-import backend.models.team_model
+import backend.models.user_team_model
 
 
 # Import api routes
 import backend.routes.member_routes
+import backend.routes.team_routes
 
 
 @app.route("/")

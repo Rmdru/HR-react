@@ -5,7 +5,7 @@ import { Login } from "./pages/Login/Login"
 import { Register } from "./pages/Register/Register"
 import EnqueteIndex from "./pages/Enquete/EnqueteIndex"
 import MemberList from "./pages/Members/MemberList"
-import { Teams } from "./pages/Teams/Teams"
+import TeamList from "./pages/Teams/TeamList"
 import { Reports } from "./pages/Reports/Reports"
 import { NotFound } from "./pages/NotFound/NotFound"
 import { Header } from "./components/Partials/Header/Header.js"
@@ -23,7 +23,7 @@ function App() {
       <Route path="/registreren" element={<Register />} />
       <Route path="/vragenlijsten" element={<EnqueteIndex />} />
       <Route path="/leden" element={<MemberList />} />
-      <Route path="/teams" element={<Teams />} />
+      <Route path="/teams" element={<TeamList />} />
       <Route path="/rapportages" element={<Reports />} />
       <Route path="/*" element={<NotFound />} />
     </Routes>
