@@ -50,3 +50,7 @@ class MemberController():
         db.session.delete(user)
         db.session.commit()
         return '', 204
+
+member_controller = MemberController()
+
+

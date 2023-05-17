@@ -1,24 +1,30 @@
-from flask import render_template, jsonify
-from backend.controllers.member_controller import MemberController
+from flask import render_template, jsonify, Blueprint
+from backend.controllers.member_controller import member_controller
 from __main__ import app
 
-@app.route("/api/members/", methods=['GET'])
+member_api = Blueprint('member_api', __name__)
+
+@member_api.route("/test", methods=['GET'])
+def members_test():
+    return "Hello members"
+
+@member_api.route("/all", methods=['GET'])
 def members_index():
-    return MemberController.get_all_users()
+    return member_controller.get_all_members()
 
-@app.route('/api/members/', methods=['POST'])
+@member_api.route('/create', methods=['POST'])
 def create_member():
-    return MemberController.create_user()
+    return member_controller.create_member()
 
-@app.route('/api/members/<id>', methods=['GET'])
+@member_api.route('/<id>', methods=['GET'])
 def show_member(id):
-    return MemberController.show_user(id)
+    return member_controller.show_user(id)
 
-@app.route('/api/members/<id>', methods=['POST'])
+@member_api.route('/<id>', methods=['POST'])
 def update_member(id):
-    return MemberController.update_user(id)
+    return member_controller.update_user(id)
 
-@app.route('/api/members/<id>', methods=['DELETE'])
+@member_api.route('/<id>', methods=['DELETE'])
 def delete_member(id):
-    return MemberController.delete_user(id)
+    return member_controller.delete_user(id)
 

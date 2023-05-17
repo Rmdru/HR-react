@@ -1,5 +1,5 @@
 from main import jsonify, db, request, redirect, url_for, flash
-from backend.models.teamModel import Team
+from backend.models.team_model import Team
 
 
 class TeamController():

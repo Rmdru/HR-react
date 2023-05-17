@@ -1,7 +1,7 @@
-from __main__ import SQLAlchemy, db, app
+from main import db
 from sqlalchemy.orm import relationship
 from backend.models.userModel import User
-from backend.models.teamModel import Team
+from backend.models.team_model import Team
 
 # Define the pivot table
 class UserTeam(db.Model):
