@@ -1,4 +1,4 @@
-from main import db, app
+from __main__ import db
 
 # Define the Team model
 
@@ -11,7 +11,3 @@ class Team(db.Model):
             'id': self.id,
             'name': self.name,
         }
-
-# Create the tables
-with app.app_context():
-    db.create_all()

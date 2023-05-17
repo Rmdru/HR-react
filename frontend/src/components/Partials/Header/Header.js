@@ -13,17 +13,17 @@ export function Header() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                    <NavLink className="nav-link" to="/" activeClassName="active">Home</NavLink>
-                    <NavLink className="nav-link" to="/vragenlijsten" activeClassName="active">Vragenlijsten</NavLink>
-                    <NavLink className="nav-link" to="/leden" activeClassName="active">Leden</NavLink>
-                    <NavLink className="nav-link" to="/teams" activeClassName="active">Teams</NavLink>
-                    <NavLink className="nav-link" to="/rapportage" activeClassName="active">Rapportage</NavLink>
+                    <NavLink className="nav-link" to="/" >Home</NavLink>
+                    <NavLink className="nav-link" to="/vragenlijsten" >Vragenlijsten</NavLink>
+                    <NavLink className="nav-link" to="/leden" >Leden</NavLink>
+                    <NavLink className="nav-link" to="/teams" >Teams</NavLink>
+                    <NavLink className="nav-link" to="/rapportage" >Rapportage</NavLink>
                     </Nav>
                 </Navbar.Collapse>
-                <div class="account">
-                    <div class="user">
-                        <span class="material-icons">person</span>
-                        <span class="loggedInUser"></span>
+                <div className="account">
+                    <div className="user">
+                        <span className="material-icons">person</span>
+                        <span className="loggedInUser"></span>
                     </div>
                     <Nav.Link href="/uitloggen">Uitloggen</Nav.Link>
                 </div>
