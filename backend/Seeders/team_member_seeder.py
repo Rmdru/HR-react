@@ -1,6 +1,7 @@
-from backend.models.userModel import User
+from backend.models.user_model import User
 from backend.models.user_team_model import UserTeam
-from main import db, app
+from backend.extensions import db
+from backend.app import app
 from faker import Faker
 import random
 

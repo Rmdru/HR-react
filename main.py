@@ -17,13 +17,14 @@ db = SQLAlchemy(app=app)
 # Create the tables
 # import backend.models.user_team_model
 
-
 # Import api routes
-# import backend.routes.member_routes
-import backend.routes.team_routes
 from backend.routes.member_routes import member_api
+from backend.routes.team_routes import team_api
 
+# Register the member API blueprint with the URL prefix '/api/member'
 app.register_blueprint(member_api, url_prefix='/api/member')
+# Register the team API blueprint with the URL prefix '/api/team'
+app.register_blueprint(team_api, url_prefix='/api/team')
 
 @app.route("/")
 def hello():
