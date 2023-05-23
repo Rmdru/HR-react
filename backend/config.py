@@ -13,7 +13,7 @@ class Config:
     # Get the absolute path of the directory containing this configuration file
     BASE_DIR = os.path.abspath(os.path.dirname(__file__))
     # URI for connecting to the SQLite database
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'backend/database/feedback.db')
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'database/feedback.sqlite')
     # Disable modification tracking for SQLAlchemy
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
