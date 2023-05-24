@@ -1,5 +1,9 @@
+import { Text, View } from 'react-native';
+
 export function Reports() {
     return (
-        <h1>Reports</h1>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Text>Rapportages</Text>
+        </View>
     );
 }
