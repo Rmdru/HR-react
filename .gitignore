@@ -158,3 +158,4 @@ databases/testcorrect_vragen.db
 
 # Node modules
 frontend.node_modules/
+node_modules
