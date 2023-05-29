@@ -23,16 +23,12 @@ class TeamController():
 
     # Retrieve the name from the request form
     @staticmethod
-    def create_team():
-
-        name = request.form.get('name')
+    def create_team(name):
 
         new_team = Team(name=name)
 
         db.session.add(new_team)
         db.session.commit()
-
-        return redirect(url_for('teams_index'))
 
     # Retrieve the team to update by ID from the database
     @staticmethod

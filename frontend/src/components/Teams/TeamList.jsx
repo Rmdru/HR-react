@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import TeamModal from './TeamModal';
 
 // Define state variable 'teams' and its setter function 'setTeams'
@@ -8,7 +9,7 @@ function TeamList() {
 
   useEffect(() => {
     // Fetch data from the API when the component mounts
-    fetch('http://127.0.0.1:5000/api/v1/team/all')
+    fetch('http://127.0.0.1:5000/api/v1/teams/all')
       .then(response => response.json()) // Convert response to JSON
       .then(data => {
         setTeams(data); // Update 'teams' state with fetched data
@@ -33,6 +34,8 @@ function TeamList() {
           <tr>
             <th scope="col"></th>
             <th scope="col">Naam</th>
+            <th scope="col">Teamleden per team</th>
+            <th scope="col">...</th>
           </tr>
         </thead>
         <tbody>
@@ -40,6 +43,12 @@ function TeamList() {
             <tr key={team.id}>
               <th scope="row">{team.id}</th>
               <td>{team.name}</td>
+              <td>
+              <button class="btn btn-primary d-flex align-items-center">Teamleden</button>
+              </td>
+              <td>
+              <button class="btn btn-primary d-flex align-items-center">Aanpassen</button>
+              </td>
             </tr>
           ))}
         </tbody>

@@ -22,12 +22,12 @@ if __name__ == "__main__":
     from models.user_model import User
     from models.user_team_model import UserTeam
 
-    # Execute the following code within the application context
-    with app.app_context():
+    # Execute the following code within the application context when you want to apply table changes
+    # with app.app_context():
         # Drop all database tables
-        db.drop_all()
+    #    db.drop_all()
         # Create all database tables based on the defined models
-        db.create_all()
+    #    db.create_all()
 
     # Initialize the database migration extension for the Flask application
     migrate.init_app(app, db)
@@ -40,6 +40,6 @@ if __name__ == "__main__":
     blueprint_name = [member_api, team_api]
     for name in blueprint_name:
         app.register_blueprint(name)
-
+    
     # Run the Flask application on the specified host, port, and with debug mode enabled or disabled
     app.run(host=Config.FLASK_IP, port=Config.FLASK_PORT, debug=Config.FLASK_DEBUG)
