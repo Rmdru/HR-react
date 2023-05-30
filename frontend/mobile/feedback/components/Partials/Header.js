@@ -13,7 +13,7 @@ export function Header() {
         <Tab.Navigator
             screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
-              if (route.name === 'Overview') {
+              if (route.name === 'Home') {
                 return (
                   <MaterialIcons
                     name="home"
@@ -56,10 +56,10 @@ export function Header() {
               }
             },
             tabBarInactiveTintColor: 'gray',
-            tabBarActiveTintColor: 'tomato',
+            tabBarActiveTintColor: '#46ad10',
           })}
         >
-            <Tab.Screen name="Overview" component={Overview} />
+            <Tab.Screen name="Home" component={Overview} />
             <Tab.Screen name="Vragenlijsten" component={Enquete} />
             <Tab.Screen name="Leden" component={Members} />
             <Tab.Screen name="Teams" component={Teams} />
