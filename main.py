@@ -23,7 +23,7 @@ db.init_app(app)
 import backend.routes.teamRoutes
 import backend.routes.surveyRoutes
 backend.routes.teamRoutes.setup_team_routes(app)
-backend.routes.surveyRoutes.setup_survey_routes(app)
+backend.routes.surveyRoutes.setup_survey_r  outes(app)
 
 
 @app.route("/")

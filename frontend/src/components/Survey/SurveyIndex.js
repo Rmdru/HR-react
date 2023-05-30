@@ -14,7 +14,6 @@ function SurveyIndex() {
                 console.error('There was a problem fetching data:', error);
             });
     }, []);
-
     return (
         <table className="table">
             <thead className="thead-light">
@@ -30,7 +29,7 @@ function SurveyIndex() {
                 <tr key={survey.id}>
                     <th scope="row">{survey.id}</th>
                     <td>{survey.name}</td>
-                    <td>{survey.team.name}</td>
+                    {/*<td>{survey.team.name}</td>*/}
                 </tr>
             ))}
 

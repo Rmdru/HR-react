@@ -3,7 +3,6 @@ import React, {useEffect, useState} from 'react';
 function CreateModel() {
     const [teams, setTeams] = useState([]);
     const [surveyName, setSurveyName] = useState("");
-    const [selectedTeams, setSelectedTeams] = useState([]);
     useEffect(() => {
         fetch('http://127.0.0.1:5000/api/teams')
             .then(response => response.json())
@@ -58,7 +57,7 @@ function CreateModel() {
                             </div>
                             <div className="form-group mt-3">
                                 <label htmlFor="team" className="mb-2">Team</label>
-                                <select id="team" className="form-control" name="team" multiple value={selectedTeams}
+                                <select id="team" className="form-control" name="team" value={selectedTeams}
                                         onChange={(e) => setSelectedTeams(Array.from(e.target.selectedOptions, option => option.value))}>
                                     {teams.map(team => (
                                         <option key={team.id} value={team.id}>{team.name}</option>
