@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-function CreateModel() {
+function EditModal() {
     const [teams, setTeams] = useState([]);
     const [surveyName, setSurveyName] = useState("");
     const [selectedTeams, setSelectedTeams] = useState([]);
@@ -39,12 +39,12 @@ function CreateModel() {
             });
     };
     return (
-        <div className="modal fade" id="modalCreateSurvey" tabIndex="-1" role="dialog"
+        <div className="modal fade" id="modalEditSurvey" tabIndex="-1" role="dialog"
              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered" role="document">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLongTitle">Vragenlijst toevoegen</h5>
+                        <h5 className="modal-title" id="exampleModalLongTitle">Vragenlijst aanpassen</h5>
                         <button type="button" className="close bg-white border-0" data-dismiss="modal"
                                 aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -80,4 +80,4 @@ function CreateModel() {
     );
 }
 
-export default CreateModel;
+export default EditModal;

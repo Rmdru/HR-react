@@ -1,11 +1,13 @@
 import React from "react";
 import CreateModal from "../../components/Survey/CreateModal";
+import EditModal from "../../components/Survey/EditModal";
 import SurveyIndex from "../../components/Survey/SurveyIndex";
 
 function SurveyPage() {
     return (
         <>
             <CreateModal/>
+            <EditModal/>
             <div id={"SurveyPage"}>
                 <div className="container mt-5">
                     <div className="top d-flex justify-content-between my-5">

@@ -9,3 +9,8 @@ def setup_survey_routes(app):
     @app.route('/api/surveys/', methods=['POST'])
     def create_survey():
         return SurveyController.store()
+
+
+    @app.route('/api/surveys/', methods=['PATCH'])
+    def edit_survey():
+        return SurveyController.edit()

@@ -13,17 +13,20 @@ app = Flask(__name__)
 CORS(app)
 CORS(app, origins='http://localhost:3000')
 
-
 db = SQLAlchemy()
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(app.root_path, 'backend', 'database', 'feedback.db')
 db.init_app(app)
 
-
 # Create the tables
 import backend.routes.teamRoutes
 import backend.routes.surveyRoutes
+
 backend.routes.teamRoutes.setup_team_routes(app)
-backend.routes.surveyRoutes.setup_survey_r  outes(app)
+backend.routes.surveyRoutes.setup_survey_routes(app)
+
+import backend.models.surveyModel
+with app.app_context():
+    db.create_all()
 
 
 @app.route("/")

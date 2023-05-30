@@ -1,4 +1,6 @@
 from backend.models.surveyModel import Survey
+from backend.models.teamModel import Team
+from backend.models.surveyTeamModel import SurveyTeam
 from __main__ import jsonify, request, db
 
 class SurveyController():
@@ -11,21 +13,29 @@ class SurveyController():
     def store():
         # Retrieve the Survey data from the request
         survey_data = request.json
-        print(survey_data)
+
         # Input validation
         if 'name' not in survey_data or 'teams' not in survey_data:
             return jsonify({'error': 'Invalid Survey data. Missing required fields.'}), 400
 
         # Create the Survey in the database
-        survey = Survey(name=survey_data['name'], team_id=survey_data['teams'])
+        survey = Survey(name=survey_data['name'])
         db.session.add(survey)
+        db.session.flush()  # Flush the session to generate the survey ID
+
+        for team_id in survey_data['teams']:
+            team = Team.query.get(team_id)
+            if team:
+                survey_team = SurveyTeam(survey_id=survey.id, team_id=team.id)
+                db.session.add(survey_team)
+
         db.session.commit()
 
         created_survey = {
             'id': survey.id,
             'name': survey.name,
-            'team': survey.team
+            'teams': [team.to_dict() for team in survey.teams]
             # Include any other relevant Survey data
         }
 
-        return jsonify(created_survey), 201 # 201 = Created
+        return jsonify(created_survey), 201  # 201 = Created
