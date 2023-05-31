@@ -1,9 +1,8 @@
 import { React } from "react";
 import { Route, Routes } from "react-router-dom";
 import { Overview } from "./pages/Overview/Overview"
-import { Login } from "./pages/Login/Login"
+import Login from "./pages/Login/Login"
 import SignUp from "./pages/Register/Register"
-import { Register } from "./pages/Register/Register"
 import SurveyPage from "./pages/Survey/SurveyPage"
 import MemberPage from "./pages/Members/MemberPage"
 import TeamPage from "./pages/Teams/TeamPage"
