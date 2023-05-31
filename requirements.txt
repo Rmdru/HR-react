@@ -1,4 +1,6 @@
-Flask
+Flask~=2.2.3
 flask_sqlalchemy
 flask_login
 pi
+
+Werkzeug~=2.2.3
