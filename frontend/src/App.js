@@ -2,6 +2,7 @@ import { React } from "react";
 import { Route, Routes } from "react-router-dom";
 import { Overview } from "./pages/Overview/Overview"
 import { Login } from "./pages/Login/Login"
+import SignUp from "./pages/Register/Register"
 import { Register } from "./pages/Register/Register"
 import SurveyPage from "./pages/Survey/SurveyPage"
 import MemberPage from "./pages/Members/MemberPage"
@@ -20,7 +21,7 @@ function App() {
     <Routes>
       <Route path="/" index element={<Overview />} />
       <Route path="/inloggen" element={<Login />} />
-      <Route path="/registreren" element={<Register />} />
+      <Route path="/registreren" element={<SignUp/>}/>
       <Route path="/vragenlijsten" element={<SurveyPage />} />
       <Route path="/leden" element={<MemberPage />} />
       <Route path="/teams" element={<TeamPage />} />
