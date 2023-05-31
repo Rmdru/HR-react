@@ -21,6 +21,7 @@ if __name__ == "__main__":
     from models.team_model import Team
     from models.user_model import User
     from models.user_team_model import UserTeam
+    from models.question_model import Questions
 
     # Execute the following code within the application context when you want to apply table changes
     # with app.app_context():
@@ -35,9 +36,10 @@ if __name__ == "__main__":
     # Import the member_api blueprint and team_api blueprint from the routes package
     from routes.member_routes import member_api
     from routes.team_routes import team_api
+    from routes.question_routes import question_api
 
     # Register the blueprints
-    blueprint_name = [member_api, team_api]
+    blueprint_name = [member_api, team_api, question_api]
     for name in blueprint_name:
         app.register_blueprint(name)
     

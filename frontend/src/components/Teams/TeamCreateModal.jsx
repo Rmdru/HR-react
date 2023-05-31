@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 // Define state variable 'teamName' and its setter functions
-function TeamModal() {
+function TeamCreateModal() {
   const [teamName, setTeamName] = useState("");
 
 
@@ -35,7 +35,7 @@ const handleSaveChanges = () => {
   return (
     <div
       className="modal fade"
-      id="modalTeamModal"
+      id="modalTeamCreateModal"
       tabIndex="-1"
       role="dialog"
       aria-labelledby="exampleModalCenterTitle"
@@ -95,4 +95,4 @@ const handleSaveChanges = () => {
   );
 }
 
-export default TeamModal;
+export default TeamCreateModal;

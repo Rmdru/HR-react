@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-function TeamUpdateModal() {
+function TeamEditModal() {
   const [teamName, setTeamName] = useState("");
   const [teamTeam, setTeamTeam] = useState("");
   const [actionType, setActionType] = useState("change");
@@ -59,7 +59,7 @@ function TeamUpdateModal() {
   return (
     <div
       className="modal fade"
-      id="modalTeamUpdateModal"
+      id="modalTeamEditModal"
       tabIndex="-1"
       role="dialog"
       aria-labelledby="exampleModalCenterTitle"
@@ -142,4 +142,4 @@ function TeamUpdateModal() {
   );
 }
 
-export default TeamUpdateModal;
+export default TeamEditModal;

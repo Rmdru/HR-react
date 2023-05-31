@@ -1,45 +1,56 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-// Define state variables 'memberName' and 'memberEmail' and their setter functions
-function MemberModal() {
+function MemberEditModal() {
   const [memberName, setMemberName] = useState("");
   const [memberEmail, setMemberEmail] = useState("");
   const [memberTeam, setMemberTeam] = useState("");
+  const [actionType, setActionType] = useState("change");
 
   const handleSaveChanges = () => {
+    if (actionType === "change") {
+      let data = JSON.stringify({
+        name: memberName,
+        email: memberEmail,
+        department: memberTeam
+      });
 
-    let data = JSON.stringify({
-      "name": memberName,
-      "email": memberEmail,
-      "department": memberTeam
-    });
-    
-    let config = {
-      method: 'post',
-      maxBodyLength: Infinity,
-      url: 'http://127.0.0.1:5000/api/v1/members/create',
-      headers: { 
-        'Content-Type': 'application/json'
-      },
-      data : data
-    };
-    
-    axios.request(config)
-    .then((response) => {
-      console.log(JSON.stringify(response.data));
-      window.location.reload()
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-    
-  };
+      let config = {
+        method: "post",
+        maxBodyLength: Infinity,
+        url: "http://127.0.0.1:5000/api/v1/members/create",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        data: data
+      };
+
+      axios
+        .request(config)
+        .then((response) => {
+          console.log(JSON.stringify(response.data));
+          window.location.reload();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else if (actionType === "delete") {
+      // Logic to delete the team
+      let config = {
+        method: "delete",
+        url: "http://127.0.0.1:5000/api/v1/members/delete",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        data: {
+          teamName: memberTeam
+        }
+      };
 
   return (
     <div
       className="modal fade"
-      id="modalMemberModal"
+      id="modalMemberEditModal"
       tabIndex="-1"
       role="dialog"
       aria-labelledby="exampleModalCenterTitle"
@@ -49,7 +60,7 @@ function MemberModal() {
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title" id="exampleModalLongTitle">
-              Teamlid toevoegen
+              {actionType === "change" ? "Teamlid wijzigen" : "Teamlid verwijderen"}
             </h5>
             <button
               type="button"
@@ -90,7 +101,7 @@ function MemberModal() {
               </div>
               <div className="form-group">
                 <label htmlFor="team" className="mb-2">
-                  Team
+                  {actionType === "change" ? "Nieuw team" : "Te verwijderen team"}
                 </label>
                 <input
                   type="text"
@@ -98,19 +109,29 @@ function MemberModal() {
                   id="team"
                   value={memberTeam}
                   onChange={(e) => setMemberTeam(e.target.value)}
-                  placeholder="Vul een team in"
+                  placeholder={actionType === "change" ? "Vul een team in" : "Vul een teamnaam in om te verwijderen"}
                 />
               </div>
             </form>
           </div>
           <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={handleSaveChanges}
-            >
-              Opslaan
-            </button>
+            {actionType === "change" ? (
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={handleSaveChanges}
+              >
+                Opslaan
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="btn btn-danger"
+                onClick={handleSaveChanges}
+              >
+                Verwijderen
+              </button>
+            )}
             <button
               type="button"
               className="btn btn-secondary"
@@ -124,5 +145,7 @@ function MemberModal() {
     </div>
   );
 }
+}
+}
 
-export default MemberModal;
+export default MemberEditModal;
