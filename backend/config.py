@@ -21,3 +21,5 @@ class Config:
     members_api_prefix = "/api/v1/members"
     # Prefix for team-related API endpoints
     teams_api_prefix = "/api/v1/teams"
+    # Prefix for question-related API endpoints
+    questions_api_prefix = "/api/v1/questions"

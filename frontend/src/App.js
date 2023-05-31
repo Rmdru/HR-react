@@ -6,6 +6,7 @@ import { Register } from "./pages/Register/Register"
 import EnqueteIndex from "./pages/Enquete/EnqueteIndex"
 import MemberPage from "./pages/Members/MemberPage"
 import TeamPage from "./pages/Teams/TeamPage"
+import QuestionPage from "./pages/Questions/QuestionPage"
 import { Reports } from "./pages/Reports/Reports"
 import { NotFound } from "./pages/NotFound/NotFound"
 import { Header } from "./components/Partials/Header/Header.js"
@@ -24,6 +25,7 @@ function App() {
       <Route path="/vragenlijsten" element={<EnqueteIndex />} />
       <Route path="/leden" element={<MemberPage />} />
       <Route path="/teams" element={<TeamPage />} />
+      <Route path="/vragen" element={<QuestionPage />} />
       <Route path="/rapportages" element={<Reports />} />
       <Route path="/*" element={<NotFound />} />
     </Routes>

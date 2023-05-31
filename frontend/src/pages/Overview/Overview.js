@@ -29,6 +29,17 @@ export function Overview() {
                         </div>
                     </Link>
                 </Col>
+                <Col>
+                    <Link to="/vragen" class="item">
+                        <span class="material-icons tileIcon fs-1">insights</span>
+                        <div class="flex">
+                            <h2>Vragen</h2>
+                            <div class="bttn">
+                                <span class="material-icons">keyboard_arrow_right</span>
+                            </div>
+                        </div>
+                    </Link>
+                </Col>
             </Row>
             <Row className="gap-3 flex-column w-100">
                 <Col>
@@ -47,6 +58,17 @@ export function Overview() {
                         <span class="material-icons tileIcon fs-1">insights</span>
                         <div class="flex">
                             <h2>Rapportages</h2>
+                            <div class="bttn">
+                                <span class="material-icons">keyboard_arrow_right</span>
+                            </div>
+                        </div>
+                    </Link>
+                </Col>
+                <Col>
+                    <Link to="/antwoorden" class="item">
+                        <span class="material-icons tileIcon fs-1">insights</span>
+                        <div class="flex">
+                            <h2>Antwoorden</h2>
                             <div class="bttn">
                                 <span class="material-icons">keyboard_arrow_right</span>
                             </div>

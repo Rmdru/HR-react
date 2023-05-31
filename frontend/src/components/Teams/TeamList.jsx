@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import TeamModal from './TeamModal';
+import TeamCreateModal from './TeamCreateModal';
 
 // Define state variable 'teams' and its setter function 'setTeams'
 function TeamList() {
@@ -54,7 +54,7 @@ function TeamList() {
         </tbody>
       </table>
 
-      {showModal && <TeamModal closeModal={handleCloseModal} />}
+      {showModal && <TeamCreateModal closeModal={handleCloseModal} />}
     </div>
   );
 }

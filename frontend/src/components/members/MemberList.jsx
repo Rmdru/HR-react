@@ -47,7 +47,7 @@ function MemberList() {
                     <td>
                     <button onClick={() => updateMember(user.id)} 
                     href="#" className={"btn btn-primary d-flex align-items-center"} data-toggle="modal" 
-                    data-target="#modalMemberModal">Aanpassen</button>
+                    data-target="#modalMemberCreateModal">Aanpassen</button>
                     </td>
                 </tr>
             ))}
