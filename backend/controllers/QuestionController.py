@@ -2,10 +2,6 @@ from backend.app import db
 from backend.models.QuestionModel import Question
 from flask import jsonify, request
 
-""" This class handles the logic and operations related to the questions of the application.
-    It provides methods to retrieve, create, update, and delete questions. """
-
-
 class QuestionController:
 
     # Retrieve all questions from the database
@@ -18,10 +14,13 @@ class QuestionController:
     # Retrieve a specific question by ID from the database
     @staticmethod
     def show_question(id):
-        question = Question.query.get(id)
-        if not question:
-            return jsonify({'message': 'Question not found'}), 404
-        return jsonify({'question': question.to_dict()}), 200
+        questions = Question.query.filter_by(survey_id=id).all()
+        if not questions:
+            return 'no data'
+        question_list = [question.to_dict() for question in questions]
+
+        print(question_list)
+        return jsonify({'questions': question_list}), 200
 
     # Create a new question
     @staticmethod
@@ -31,8 +30,9 @@ class QuestionController:
         question_data = request.json
         survey_id = request.args.get('surveyId[surveyId]')
 
-        print(question_data, survey_id)
+        print(survey_id, 'dfaasdfsdfasdfsdaf' )
         for question in question_data:
+            print()
             if question['question'] == "":
                 return jsonify({'message': 'Question cannot be empty'}), 400
 

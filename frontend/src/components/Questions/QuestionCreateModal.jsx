@@ -56,16 +56,14 @@ function QuestionCreateModal(surveyId) {
 
         // Clear the error state if there are no empty questions
         setError(false);
-        console.log(surveyId)
         axios.post('http://127.0.0.1:5000/api/questions', questions, { params: { surveyId } })
             .then(response => {
-                window.location.reload();
+                // window.location.reload();
             })
             .catch(error => {
                 console.error(error);
             });
     };
-
     return (
         <div className="modal fade" id="modalCreateQuestion" tabIndex="-1" role="dialog"
              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

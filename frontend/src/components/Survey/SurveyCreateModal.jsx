@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-function CreateModel() {
+function SurveyCreateModel() {
     const [teams, setTeams] = useState([]);
     const [surveyName, setSurveyName] = useState("");
     const [selectedTeams, setSelectedTeams] = useState([]);
@@ -22,7 +22,7 @@ function CreateModel() {
             teams: selectedTeams
         };
 
-        fetch('http://127.0.0.1:5000/api/surveys/', {
+        fetch('http://127.0.0.1:5000/api/surveys', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -32,7 +32,7 @@ function CreateModel() {
             .then(response => response.json())
             .then(data => {
                 console.log("Survey created successfully:", data);
-                // Reset form fields or navigate to a new page
+                window.location.reload();
             })
             .catch(error => {
                 console.error('There was a problem creating the survey:', error);
@@ -80,4 +80,4 @@ function CreateModel() {
     );
 }
 
-export default CreateModel;
+export default SurveyCreateModel;

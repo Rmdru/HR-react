@@ -1,8 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import QuestionCreateModal from "../../components/Questions/QuestionCreateModal";
+import QuestionEditModal from "../../components/Questions/QuestionEditModal";
+import axios from "axios";
 
 function SurveyIndex() {
     const [surveys, setSurveys] = useState([]);
+    const [modalQuestions, setModalQuestions] = useState([]);
     const [modalSurveyId, setModalSurveyId] = useState(null);
 
     useEffect(() => {
@@ -18,6 +21,15 @@ function SurveyIndex() {
     }, []);
 
 
+    const getQuestions = (surveyId) => {
+        axios.get(`http://127.0.0.1:5000/api/questions/${surveyId}`)
+            .then((response) => {
+                const questions = response.data.questions;
+                setModalSurveyId(surveyId);
+                setModalQuestions(questions); // Set the retrieved questions as the initialQuestions prop
+            });
+    };
+
     const handleOpenModal = (surveyId) => {
         setModalSurveyId(surveyId);
     };
@@ -26,6 +38,10 @@ function SurveyIndex() {
         <>
             {modalSurveyId && (
                 <QuestionCreateModal surveyId={modalSurveyId}/>
+            )}
+
+            {modalSurveyId && (
+                <QuestionEditModal surveyId={modalSurveyId} initialQuestions={modalQuestions}/>
             )}
 
             <table className="table">
@@ -49,27 +65,31 @@ function SurveyIndex() {
                             ))}
                         </td>
                         <td>
-                            <a
-                                href="#"
-                                className="btn btn-primary"
-                                data-toggle="modal"
-                                data-target="#modalEditSurvey"
-                                onClick={() => setModalSurveyId(survey.id)}
-                            >
-                                Vragenlijst aanpassen
-                            </a>
+                            {survey.questions && survey.questions.length > 0 ? (
+                                <>
+                                    <a
+                                        href="#"
+                                        className="btn btn-primary"
+                                        data-toggle="modal"
+                                        data-target="#modalEditQuestion"
+                                        onClick={() => getQuestions(survey.id)}
+                                    >
+                                        Vragenlijst aanpassen
+                                    </a>
+                                </>
+                            ) : (
+                                <a
+                                    href="#"
+                                    className="btn btn-success"
+                                    data-toggle="modal"
+                                    data-target="#modalCreateQuestion"
+                                    onClick={() => handleOpenModal(survey.id)}
+                                >
+                                    Vragen toevoegen
+                                </a>
+                            )}
                         </td>
-                        <td>
-                            <a
-                                href="#"
-                                className="btn btn-success"
-                                data-toggle="modal"
-                                data-target="#modalCreateQuestion"
-                                onClick={() => handleOpenModal(survey.id)}
-                            >
-                                Vragen toevoegen
-                            </a>
-                        </td>
+
                     </tr>
                 ))}
                 </tbody>

@@ -18,7 +18,8 @@ class Question(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'content': self.content,
+            'text': self.text,
             'type': self.type,
+            'options': self.options,
             'survey_id': self.survey_id,
         }
