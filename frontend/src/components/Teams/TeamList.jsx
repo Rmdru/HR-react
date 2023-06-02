@@ -9,7 +9,7 @@ function TeamList() {
 
   useEffect(() => {
     // Fetch data from the API when the component mounts
-    fetch('http://127.0.0.1:5000/api/v1/teams/all')
+    fetch('http://127.0.0.1:5000/api/teams/')
       .then(response => response.json()) // Convert response to JSON
       .then(data => {
         setTeams(data); // Update 'teams' state with fetched data
@@ -44,10 +44,10 @@ function TeamList() {
               <th scope="row">{team.id}</th>
               <td>{team.name}</td>
               <td>
-              <button class="btn btn-primary d-flex align-items-center">Teamleden</button>
+              <button className="btn btn-primary d-flex align-items-center">Teamleden</button>
               </td>
               <td>
-              <button class="btn btn-primary d-flex align-items-center">Aanpassen</button>
+              <button className="btn btn-primary d-flex align-items-center">Aanpassen</button>
               </td>
             </tr>
           ))}

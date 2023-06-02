@@ -18,8 +18,10 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # Prefix for member-related API endpoints
-    members_api_prefix = "/api/v1/members"
+    members_api_prefix = "/api/members"
     # Prefix for team-related API endpoints
-    teams_api_prefix = "/api/v1/teams"
+    teams_api_prefix = "/api/teams"
     # Prefix for question-related API endpoints
-    questions_api_prefix = "/api/v1/questions"
+    questions_api_prefix = "/api/questions"
+    # Prefix for survey-related API endpoints
+    surveys_api_prefix = "/api/surveys"

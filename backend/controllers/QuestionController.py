@@ -1,32 +1,54 @@
-from app import db
-from models.question_model import Questions
+from backend.app import db
+from backend.models.QuestionModel import Question
 from flask import jsonify, request
 
 """ This class handles the logic and operations related to the questions of the application.
     It provides methods to retrieve, create, update, and delete questions. """
+
+
 class QuestionController:
 
     # Retrieve all questions from the database
     @staticmethod
     def get_all_questions():
-        questions = Questions.query.all()
+        questions = Question.query.all()
         question_dict = [question.to_dict() for question in questions]
         return question_dict
 
     # Retrieve a specific question by ID from the database
     @staticmethod
     def show_question(id):
-        question = Questions.query.get(id)
+        question = Question.query.get(id)
         if not question:
             return jsonify({'message': 'Question not found'}), 404
         return jsonify({'question': question.to_dict()}), 200
 
     # Create a new question
     @staticmethod
-    def create_question(text, question_type):
-        new_question = Questions(text=text, type=question_type)
-        db.session.add(new_question)
-        db.session.commit()
+    def store():
+
+        # Retrieve the Question data from the request
+        question_data = request.json
+        survey_id = request.args.get('surveyId[surveyId]')
+
+        print(question_data, survey_id)
+        for question in question_data:
+            if question['question'] == "":
+                return jsonify({'message': 'Question cannot be empty'}), 400
+
+            # Convert the options array to a string
+            options = ",".join(question.get('options', []))
+
+            question['type'] = 1 if question['type'] == 'moreOptions' else 0
+
+            # Create a new Question instance with the data
+            question = Question(text=question['question'], survey_id=survey_id, type=question['type'], options=options)
+
+            # Save the question to the database
+            db.session.add(question)
+            db.session.commit()
+
+        return jsonify({'message': 'Questions stored successfully'}), 200
 
     # Update a question
     @staticmethod
@@ -51,6 +73,3 @@ class QuestionController:
         db.session.commit()
 
         return '', 204
-
-# Create an instance of the QuestionController class
-question_controller = QuestionController()

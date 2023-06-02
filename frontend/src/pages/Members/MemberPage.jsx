@@ -1,5 +1,5 @@
 import React from "react";
-import MemberCreateModal from "../../components/Members/MemberCreateModal"
+import MemberCreateModal from "../../components/Members/MemberCreateModal";
 import MemberList from "../../components/Members/MemberList";
 
 function MemberPage() {

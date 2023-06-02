@@ -1,20 +1,20 @@
 import React, {useEffect, useState} from 'react';
 
-function EditModal() {
+function SurveyEditModal() {
     const [teams, setTeams] = useState([]);
     const [surveyName, setSurveyName] = useState("");
     const [selectedTeams, setSelectedTeams] = useState([]);
 
-    useEffect(() => {
-        fetch('http://127.0.0.1:5000/api/teams')
-            .then(response => response.json())
-            .then(data => {
-                setTeams(data);
-            })
-            .catch(error => {
-                console.error('There was a problem fetching data:', error);
-            });
-    }, []);
+    // useEffect(() => {
+    //     fetch('http://127.0.0.1:5000/api/teams')
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             setTeams(data);
+    //         })
+    //         .catch(error => {
+    //             console.error('There was a problem fetching data:', error);
+    //         });
+    // }, []);
 
     const handleSaveChanges = () => {
         const surveyData = {
@@ -80,4 +80,4 @@ function EditModal() {
     );
 }
 
-export default EditModal;
+export default SurveyEditModal;

@@ -15,7 +15,7 @@ function TeamEditModal() {
       let config = {
         method: "post",
         maxBodyLength: Infinity,
-        url: "http://127.0.0.1:5000/api/v1/teams/create",
+        url: "http://127.0.0.1:5000/api/teams/create",
         headers: {
           "Content-Type": "application/json"
         },

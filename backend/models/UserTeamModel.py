@@ -1,4 +1,4 @@
-from extensions import db
+from backend.extensions import db
 
  # This class represents the UserTeam pivot model in the database.
 class UserTeam(db.Model):

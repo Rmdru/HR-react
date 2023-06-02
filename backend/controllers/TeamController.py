@@ -1,5 +1,5 @@
-from app import db
-from models.team_model import Team
+from backend.extensions import db
+from backend.models.TeamModel import Team
 from flask import jsonify, request, redirect, url_for
 
 """ This class handles the logic and operations related to the teams of the application.
@@ -55,5 +55,3 @@ class TeamController():
         db.session.commit()
         return '', 204
 
-# Create an instance of the TeamController class
-team_controller = TeamController()

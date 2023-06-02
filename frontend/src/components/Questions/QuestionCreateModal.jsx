@@ -1,82 +1,147 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, {useState} from 'react';
+import axios from "axios";
 
-function QuestionCreateModal() {
-  const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent the default form submission behavior
+function QuestionCreateModal(surveyId) {
+    const [error, setError] = useState(false);
+    const [type, setType] = useState('open');
+    const [questions, setQuestions] = useState([
+        {
+            type: 'open',
+            question: '',
+            options: ['', '', '', ''],
+        },
+    ]);
+
+    const handleTypeChange = (e, index) => {
+        const {value} = e.target;
+        const updatedQuestions = [...questions];
+        updatedQuestions[index].type = value;
+        setQuestions(updatedQuestions);
+    };
+
+    const handleQuestionChange = (e, index) => {
+        const {name, value} = e.target;
+        const updatedQuestions = [...questions];
+        updatedQuestions[index][name] = value;
+        setQuestions(updatedQuestions);
+    };
+
+    const handleOptionChange = (e, questionIndex, optionIndex) => {
+        const {value} = e.target;
+        const updatedQuestions = [...questions];
+        updatedQuestions[questionIndex].options[optionIndex] = value;
+        setQuestions(updatedQuestions);
+    };
+
+    const addQuestion = () => {
+        setQuestions([
+            ...questions,
+            {
+                type: 'open',
+                question: '',
+                options: ['', '', '', ''],
+            },
+        ]);
+    };
 
 
-    let questionText = event.target.elements.questionText.value;
-    let questionType = event.target.elements.questionType.value;
+    const handleSaveChanges = () => {
+        // Check if any question is empty
+        const isEmptyQuestion = questions.some(question => question.question.trim() === '');
+        if (isEmptyQuestion) {
+            // Set the error state to true
+            setError(true);
+            return;
+        }
 
-    if (questionType === 'open') {
-      questionType = false;
-    } else if (questionType === "mc") {
-      questionType = true;
-    }
-    
-    let formData = JSON.stringify({
-      questionText: questionText,
-      questionType: questionType,
-    });
-  
-    try {
-      const response = await axios.post('http://127.0.0.1:5000/api/v1/questions/create', formData, {headers: {
-        "Content-Type": "application/json"}
-    }); // Change '/your-api-endpoint' to your actual API endpoint
-      console.log(response.data); // Handle the response from the server
-    } catch (error) {
-      console.error(error); // Handle any errors
-    }
-  };
+        // Clear the error state if there are no empty questions
+        setError(false);
+        console.log(surveyId)
+        axios.post('http://127.0.0.1:5000/api/questions', questions, { params: { surveyId } })
+            .then(response => {
+                window.location.reload();
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    };
 
-  return (
-    <div className="modal fade" id="modalQuestionCreateModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div className="modal-dialog modal-dialog-centered" role="document">
-        <div className="modal-content">
-          <form onSubmit={handleSubmit}>
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLongTitle">
-                Vraag toevoegen
-              </h5>
-              <button type="button" className="close bg-white border-0" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div className="modal-body">
-                <div className="form-group">
-                  <label htmlFor="questionType" className="mb-2">
-                    Type van de vraag
-                  </label>
-                  <select className="form-select mb-2" id="questionType">
-                    <option defaultValue>Kies een type</option>
-                    <option value="open">Open vraag</option>
-                    <option value="mc">MC vraag</option>
-                  </select>
-                  <label htmlFor="questionText" className="mb-2">
-                    Tekst van de vraag
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="questionText"
-                    placeholder="Vul hier de tekst van de vraag in"
-                  />
+    return (
+        <div className="modal fade" id="modalCreateQuestion" tabIndex="-1" role="dialog"
+             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div className="modal-dialog modal-dialog-centered" role="document" style={{maxWidth: '800px'}}>
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <h5 className="modal-title" id="exampleModalLongTitle">Vraag toevoegen</h5>
+                        <button type="button" className="close bg-white border-0" data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div className="modal-body">
+                        {questions.map((question, index) => (
+                            <div key={index}>
+                                <form>
+                                    <div className="form-group mt-3">
+                                        <label htmlFor={`type_${index}`} className="mb-2">Type</label>
+                                        <select className="form-control" id={`type_${index}`} name="type"
+                                                value={question.type} onChange={(e) => handleTypeChange(e, index)}>
+                                            <option value="open">Open vraag</option>
+                                            <option value="moreOptions">Meer keuze</option>
+                                        </select>
+                                    </div>
+                                    <div className="form-group mt-3">
+                                        <label htmlFor={`question_${index}`} className="mb-2">Vraag</label>
+                                        <input
+                                            type="text"
+                                            className={`form-control ${error && question.question.trim() === '' ? 'is-invalid' : ''}`}
+                                            id={`question_${index}`}
+                                            name="question"
+                                            value={question.question}
+                                            placeholder="Vraag"
+                                            onChange={e => handleQuestionChange(e, index)}
+                                        />
+                                        {error && question.question.trim() === '' && (
+                                            <div className="invalid-feedback">Vraag is verplicht</div>
+                                        )}
+                                    </div>
+                                    {question.type === 'moreOptions' && (
+                                        <div className="form-group mt-3">
+                                            <label className="my-3">Optie A</label>
+                                            <input type="text" className="form-control" value={question.options[0]}
+                                                   placeholder="Optie A"
+                                                   onChange={(e) => handleOptionChange(e, index, 0)}></input>
+                                            <label className="my-3">Optie B</label>
+                                            <input type="text" className="form-control" value={question.options[1]}
+                                                   placeholder="Optie B"
+                                                   onChange={(e) => handleOptionChange(e, index, 1)}></input>
+                                            <label className="my-3">Optie C</label>
+                                            <input type="text" className="form-control" value={question.options[2]}
+                                                   placeholder="Optie C"
+                                                   onChange={(e) => handleOptionChange(e, index, 2)}></input>
+                                            <label className="my-3">Optie D</label>
+                                            <input type="text" className="form-control" value={question.options[3]}
+                                                   placeholder="Optie D"
+                                                   onChange={(e) => handleOptionChange(e, index, 3)}></input>
+                                            <span style={{fontSize: '12px'}}>Tip: Je hoeft ze niet allemaal in te vullen. 😉</span>
+                                        </div>
+                                    )}
+                                </form>
+                            </div>
+                        ))}
+                        <button type="button" className="btn btn-primary mt-3" onClick={addQuestion}>Vraag toevoegen
+                        </button>
+                        <ul></ul>
+                    </div>
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" className="btn btn-primary" onClick={handleSaveChanges}>Save changes
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div className="modal-footer">
-              <button type="submit" className="btn btn-primary">
-                Opslaan
-              </button>
-              <button type="button" className="btn btn-secondary" data-dismiss="modal">
-                Sluiten
-              </button>
-            </div>
-          </form>
         </div>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default QuestionCreateModal;

@@ -12,7 +12,7 @@ function QuestionList() {
 
   const fetchQuestions = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:5000/api/v1/teams/all');
+      const response = await axios.get('http://127.0.0.1:5000/api/teams/');
       setQuestions(response.data);
     } catch (error) {
       console.error('Error fetching questions:', error);

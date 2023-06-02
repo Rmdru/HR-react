@@ -1,11 +1,11 @@
-from app import db
-from models.user_model import User
-from models.team_model import Team
-from models.user_team_model import UserTeam
+from backend.app import db
+from backend.models.UserModel import User
+from backend.models.TeamModel import Team
+from backend.models.UserTeamModel import UserTeam
 from flask import jsonify, request, redirect, url_for
 
-""" This class handles the logic and operations related to the members of the application.
-    It provides methods to retrieve, create, update, and delete members. """
+""" This class handles the logic and operations related to the Members of the application.
+    It provides methods to retrieve, create, update, and delete Members. """
 class MemberController():
     
     # Retrieve all users from the database

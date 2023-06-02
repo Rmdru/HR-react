@@ -1,7 +1,8 @@
-from backend.models.surveyModel import Survey
-from backend.models.teamModel import Team
-from backend.models.surveyTeamModel import SurveyTeam
-from __main__ import jsonify, request, db
+from backend.models.SurveyModel import Survey
+from backend.models.TeamModel import Team
+from backend.models.SurveyTeamModel import SurveyTeam
+from flask import jsonify, request
+from backend.app import db
 
 class SurveyController():
     @staticmethod

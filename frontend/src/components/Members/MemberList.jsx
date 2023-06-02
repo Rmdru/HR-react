@@ -1,17 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 
-// Define state variable 'members' and its setter function 'setMembers'
+// Define state variable 'Members' and its setter function 'setMembers'
 function MemberList() {
     const [members, setMembers] = useState([]);
 
     useEffect(() => {
         // Fetch data from the API when the component mounts
-        fetch('http://127.0.0.1:5000/api/v1/members/all')
+        fetch('http://127.0.0.1:5000/api/members/all')
             .then(response => response.json()) // Convert response to JSON
             .then(data => {
                 console.log(data);
-                setMembers(data); // Update 'members' state with fetched data
+                setMembers(data); // Update 'Members' state with fetched data
 
             })
             .catch(error => {

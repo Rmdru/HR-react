@@ -1,5 +1,5 @@
-from extensions import db
-from models.user_team_model import UserTeam
+from backend.extensions import db
+from backend.models.UserTeamModel import UserTeam
 
 # This class represents the User model in the database.
 class User(db.Model):
