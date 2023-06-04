@@ -18,6 +18,8 @@ export function Header() {
                     <NavLink className="nav-link" to="/leden" activeClassName="active">Leden</NavLink>
                     <NavLink className="nav-link" to="/teams" activeClassName="active">Teams</NavLink>
                     <NavLink className="nav-link" to="/rapportage" activeClassName="active">Rapportage</NavLink>
+                    <NavLink className="nav-link" to="/vragen" activeClassName="active">Vragen</NavLink>
+                    <NavLink className="nav-link" to="/antwoorden" activeClassName="active">Antwoorden</NavLink>
                     </Nav>
                 </Navbar.Collapse>
                 <div class="account">

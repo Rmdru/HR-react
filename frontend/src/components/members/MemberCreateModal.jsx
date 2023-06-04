@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-// Define state variables 'memberName' and 'memberEmail' and their setter functions
 function MemberCreateModal() {
   const [memberName, setMemberName] = useState("");
   const [memberEmail, setMemberEmail] = useState("");
@@ -14,17 +13,17 @@ function MemberCreateModal() {
       "email": memberEmail,
       "department": memberTeam
     });
-    
+
     let config = {
       method: 'post',
       maxBodyLength: Infinity,
       url: 'http://127.0.0.1:5000/api/v1/members/create',
-      headers: { 
+      headers: {
         'Content-Type': 'application/json'
       },
       data : data
     };
-    
+
     axios.request(config)
     .then((response) => {
       console.log(JSON.stringify(response.data));
@@ -33,13 +32,13 @@ function MemberCreateModal() {
     .catch((error) => {
       console.log(error);
     });
-    
+
   };
 
   return (
     <div
       className="modal fade"
-      id="modalMemberCreateModal"
+      id="MemberCreateModal"
       tabIndex="-1"
       role="dialog"
       aria-labelledby="exampleModalCenterTitle"

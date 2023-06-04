@@ -1,56 +1,58 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function MemberEditModal() {
+function MemberEditModal({ id }) {
   const [memberName, setMemberName] = useState("");
   const [memberEmail, setMemberEmail] = useState("");
   const [memberTeam, setMemberTeam] = useState("");
-  const [actionType, setActionType] = useState("change");
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/api/v1/members/${id}`)
+      .then((response) => {
+        const memberData = response.data;
+        setMemberName(memberData.name);
+        setMemberEmail(memberData.email);
+        setMemberTeam(memberData.department);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [id]);
 
   const handleSaveChanges = () => {
-    if (actionType === "change") {
-      let data = JSON.stringify({
-        name: memberName,
-        email: memberEmail,
-        department: memberTeam
+    const data = {
+      name: memberName,
+      email: memberEmail,
+      department: memberTeam
+    };
+
+    axios
+      .post(`http://localhost:5000/api/v1/members/${id}`, data)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.log(error);
       });
+  };
 
-      let config = {
-        method: "post",
-        maxBodyLength: Infinity,
-        url: "http://127.0.0.1:5000/api/v1/members/create",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        data: data
-      };
-
-      axios
-        .request(config)
-        .then((response) => {
-          console.log(JSON.stringify(response.data));
-          window.location.reload();
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    } else if (actionType === "delete") {
-      // Logic to delete the team
-      let config = {
-        method: "delete",
-        url: "http://127.0.0.1:5000/api/v1/members/delete",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        data: {
-          teamName: memberTeam
-        }
-      };
+  const handleDeleteMember = () => {
+    axios
+      .delete(`http://localhost:5000/api/v1/members/${id}`)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div
       className="modal fade"
-      id="modalMemberEditModal"
+      id="MemberEditModal"
       tabIndex="-1"
       role="dialog"
       aria-labelledby="exampleModalCenterTitle"
@@ -60,7 +62,7 @@ function MemberEditModal() {
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title" id="exampleModalLongTitle">
-              {actionType === "change" ? "Teamlid wijzigen" : "Teamlid verwijderen"}
+              Teamlid aanpassen / verwijderen
             </h5>
             <button
               type="button"
@@ -78,60 +80,57 @@ function MemberEditModal() {
                   Naam
                 </label>
                 <input
-                  type="text"
-                  className="form-control"
-                  id="name"
-                  placeholder="Vul een naam in"
-                  value={memberName}
-                  onChange={(e) => setMemberName(e.target.value)}
-                />
+                type="text"
+                className="form-control"
+                id="name"
+                defaultValue={memberName}
+                value={memberName}
+                onChange={(e) => setMemberName(e.target.value)}
+              />
               </div>
               <div className="form-group">
                 <label htmlFor="email" className="mb-2">
                   Email
                 </label>
                 <input
-                  type="text"
-                  className="form-control"
-                  id="email"
-                  placeholder="Vul een email in"
-                  value={memberEmail}
-                  onChange={(e) => setMemberEmail(e.target.value)}
-                />
+                type="text"
+                className="form-control"
+                id="email"
+                defaultValue={memberEmail}
+                value={memberEmail}
+                onChange={(e) => setMemberEmail(e.target.value)}
+              />
               </div>
               <div className="form-group">
                 <label htmlFor="team" className="mb-2">
-                  {actionType === "change" ? "Nieuw team" : "Te verwijderen team"}
+                  Team
                 </label>
                 <input
-                  type="text"
-                  className="form-control"
-                  id="team"
-                  value={memberTeam}
-                  onChange={(e) => setMemberTeam(e.target.value)}
-                  placeholder={actionType === "change" ? "Vul een team in" : "Vul een teamnaam in om te verwijderen"}
-                />
+                type="text"
+                className="form-control"
+                id="team"
+                defaultValue={memberTeam}
+                value={memberTeam}
+                onChange={(e) => setMemberTeam(e.target.value)}
+              />
               </div>
             </form>
           </div>
           <div className="modal-footer">
-            {actionType === "change" ? (
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={handleSaveChanges}
-              >
-                Opslaan
-              </button>
-            ) : (
-              <button
-                type="button"
-                className="btn btn-danger"
-                onClick={handleSaveChanges}
-              >
-                Verwijderen
-              </button>
-            )}
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={handleSaveChanges}
+            >
+              Opslaan
+            </button>
+            <button
+              type="button"
+              className="btn btn-danger"
+              onClick={handleDeleteMember}
+            >
+              Verwijderen
+            </button>
             <button
               type="button"
               className="btn btn-secondary"
@@ -144,8 +143,6 @@ function MemberEditModal() {
       </div>
     </div>
   );
-}
-}
-}
+  }  
 
 export default MemberEditModal;
