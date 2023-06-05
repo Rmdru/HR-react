@@ -36,8 +36,8 @@ def show_team(id):
 # Endpoint to update a specific team by ID
 @team_api.route('/<id>', methods=['POST'])
 def update_team(id):
-    data = request.get_json()
-    return jsonify(team_controller.update_team(id, data))
+    team_controller.update_team(id)
+    return jsonify({'message': 'Team updated successfully'})
 
 # Endpoint to delete a specific team by ID
 @team_api.route('/<id>', methods=['DELETE'])
