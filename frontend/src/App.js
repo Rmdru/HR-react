@@ -11,6 +11,7 @@ import { Reports } from "./pages/Reports/Reports"
 import { NotFound } from "./pages/NotFound/NotFound"
 import { Header } from "./components/Partials/Header/Header.js"
 import './App.css';
+import Logout from "./pages/Logout/Logout";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
       <Route path="/vragen" element={<QuestionPage />} />
       <Route path="/rapportages" element={<Reports />} />
       <Route path="/*" element={<NotFound />} />
+      <Route path="/uitloggen" element={<Logout />} />
     </Routes>
     </>
   );
