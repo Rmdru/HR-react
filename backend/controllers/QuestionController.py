@@ -19,20 +19,16 @@ class QuestionController:
             return 'no data'
         question_list = [question.to_dict() for question in questions]
 
-        print(question_list)
         return jsonify({'questions': question_list}), 200
 
     # Create a new question
     @staticmethod
     def store():
-
         # Retrieve the Question data from the request
         question_data = request.json
         survey_id = request.args.get('surveyId[surveyId]')
 
-        print(survey_id, 'dfaasdfsdfasdfsdaf' )
         for question in question_data:
-            print()
             if question['question'] == "":
                 return jsonify({'message': 'Question cannot be empty'}), 400
 
@@ -52,15 +48,21 @@ class QuestionController:
 
     # Update a question
     @staticmethod
-    def update_question(id, text, question_type):
-        question = Questions.query.get(id)
-        if not question:
-            return jsonify({'message': 'Question not found'}), 404
+    def edit(id, data):
+        for updated_data in data:
+            question_id = updated_data['id']
+            question = Question.query.get(question_id)
+            if not question:
+                return jsonify({'message': f'Question not found with ID {question_id}'}), 404
 
-        question.text = text
-        question.type = question_type
+            question.text = updated_data['text']
+            question.type = updated_data['type']
+            question.options = updated_data['options']
+
+            db.session.add(question)
 
         db.session.commit()
+        return 'ok'
 
     # Delete a question
     @staticmethod

@@ -12,6 +12,14 @@ function QuestionEditModal({surveyId, initialQuestions}) {
         }
     }, [initialQuestions]);
 
+    const handleTypeChange = (e, index) => {
+        const {value} = e.target;
+        console.log(value)
+        const updatedQuestions = [...questions];
+        updatedQuestions[index].type = Number(value);
+        setQuestions(updatedQuestions);
+    };
+
     const handleQuestionChange = (e, questionIndex) => {
         const {value} = e.target;
         const updatedQuestions = [...questions];
@@ -20,10 +28,18 @@ function QuestionEditModal({surveyId, initialQuestions}) {
     };
 
     const handleOptionChange = (e, questionIndex, optionIndex) => {
-        // const {value} = e.target;
-        // const updatedQuestions = [...questions];
-        // updatedQuestions[questionIndex].options[optionIndex] = value;
-        // setQuestions(updatedQuestions);
+        const {value} = e.target;
+        const updatedQuestions = [...questions];
+
+        // Convert the options string to an array
+        const optionsArray = updatedQuestions[questionIndex].options.split(",");
+        // Update the value at the specified optionIndex
+        optionsArray[optionIndex] = value;
+
+        // Convert the options array back to a string
+        updatedQuestions[questionIndex].options = optionsArray.join(",");
+
+        setQuestions(updatedQuestions);
     };
 
     const handleSaveChanges = () => {
@@ -38,7 +54,7 @@ function QuestionEditModal({surveyId, initialQuestions}) {
         // Clear the error state if there are no empty questions
         setError(false);
         console.log(surveyId, 'sdfsd')
-        axios.post('http://127.0.0.1:5000/api/questions', questions, {params: {surveyId: {surveyId}}})
+        axios.post(`http://127.0.0.1:5000/api/questions/${surveyId}`, questions)
             .then(response => {
                 window.location.reload();
             })
@@ -46,6 +62,9 @@ function QuestionEditModal({surveyId, initialQuestions}) {
                 console.error(error);
             });
     };
+
+    console.log(questions);
+
     return (
         <div className="modal fade" id="modalEditQuestion" tabIndex="-1" role="dialog"
              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -62,6 +81,16 @@ function QuestionEditModal({surveyId, initialQuestions}) {
                         <form>
                             {questions.map((question, index) => (
                                 <div key={index}>
+                                    {/*<pre>{JSON.stringify(question, null, 2)}</pre>*/}
+                                    <div className="form-group mt-3">
+                                        <label htmlFor={`type_${index}`} className="mb-2">Type</label>
+                                        <select className="form-control" id={`type_${index}`} name="type"
+                                                onChange={(e) => handleTypeChange(e, index)}>
+                                            <option value={0} selected={question.type === false}>Open vraag</option>
+                                            <option value={1} selected={question.type === true}>Meer keuze</option>
+                                        </select>
+                                    </div>
+
                                     <div className="form-group mt-3">
                                         <label htmlFor={`question_${index}`} className="mb-2">Vraag</label>
                                         <input
@@ -78,7 +107,7 @@ function QuestionEditModal({surveyId, initialQuestions}) {
                                             <div className="invalid-feedback">Vraag is verplicht</div>
                                         )}
                                     </div>
-                                    {question.type === true && (
+                                    {(question.type === true || question.type === 1) && (
                                         <div className="form-group mt-3">
                                             {question.options.split(',').map((option, optionIndex) => (
                                                 <div key={optionIndex}>

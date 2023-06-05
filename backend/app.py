@@ -1,5 +1,5 @@
 from flask import Flask
-from extensions import cors, migrate, db
+from extensions import migrate, db
 from config import Config
 from flask_cors import CORS
 
