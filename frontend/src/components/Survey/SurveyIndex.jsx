@@ -34,6 +34,13 @@ function SurveyIndex() {
         setModalSurveyId(surveyId);
     };
 
+    const sendMail = (surveyId) => {
+        axios.get(`http://127.0.0.1:5000/api/surveys/mail/${surveyId}`)
+            .then((response) => {
+
+            });
+    };
+
     return (
         <>
             {modalSurveyId && (
@@ -89,7 +96,15 @@ function SurveyIndex() {
                                 </a>
                             )}
                         </td>
-
+                        <td>
+                            <a
+                                href="#"
+                                className="btn btn-primary"
+                                onClick={() => sendMail(survey.id)}
+                            >
+                                Deelnemers e-mailen
+                            </a>
+                        </td>
                     </tr>
                 ))}
                 </tbody>

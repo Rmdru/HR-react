@@ -2,9 +2,23 @@ from flask import Flask
 from extensions import migrate, db
 from config import Config
 from flask_cors import CORS
+from flask_mail import Mail
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 app = Flask(__name__)
 app.config.from_object(Config)
+
+#Flask-Mail configuration
+app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER')
+app.config['MAIL_PORT'] = os.getenv('MAIL_PORT')
+app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
+app.config['MAIL_USE_TLS'] = os.getenv('MAIL_USE_TLS')
+app.config['MAIL_USE_SSL'] = os.getenv('MAIL_USE_SSL')
+mail = Mail(app)
 
 # Initialize the CORS extension and database extension for the Flask application
 db.init_app(app)

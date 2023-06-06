@@ -34,3 +34,7 @@ def update_surveyr(id):
 @survey_api.route('/<id>', methods=['DELETE'])
 def delete_survey(id):
     return 'delete survey'
+
+@survey_api.route("/mail/<id>", methods=['GET'])
+def mail_members(id):
+    return SurveyController.mail_members(id)

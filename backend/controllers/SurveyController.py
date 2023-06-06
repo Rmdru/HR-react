@@ -2,7 +2,8 @@ from backend.models.SurveyModel import Survey
 from backend.models.TeamModel import Team
 from backend.models.SurveyTeamModel import SurveyTeam
 from flask import jsonify, request
-from backend.app import db
+from backend.app import db, mail
+from flask_mail import Message
 
 class SurveyController():
     @staticmethod
@@ -40,3 +41,10 @@ class SurveyController():
         }
 
         return jsonify(created_survey), 201  # 201 = Created
+
+
+    @staticmethod
+    def mail_members(id = ""):
+        msg = Message('Hello', sender='1056362@hr.nl', recipients=['rmdruijter@gmail.com'])
+        msg.body = "Hello Flask message sent from Flask-Mail"
+        mail.send(msg)
