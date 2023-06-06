@@ -62,38 +62,43 @@ function SurveyEditModal(props) {
                     </div>
                     <div className="modal-body">
                         <form>
+                            <pre>{JSON.stringify(survey, null, 2)}</pre>
+
                             <div className="form-group">
                                 <label htmlFor="name" className="mb-2">Naam</label>
                                 <input type="text" className="form-control" id="name" placeholder="Naam"
                                        value={surveyName} onChange={(e) => setSurveyName(e.target.value)}/>
                             </div>
-                            <select
-                                id="team"
-                                className="form-control"
-                                name="team"
-                                value={selectedTeams.map(team => team.id)}
-                                multiple={true}
-                                onChange={(e) =>
-                                    setSelectedTeams(
-                                        Array.from(e.target.selectedOptions, option => ({
-                                            id: option.value,
-                                            name: option.label
-                                        }))
-                                    )
-                                }
-                            >
-                                {teams.map(team => (
-                                    <option
-                                        key={team.id}
-                                        value={team.id}
-                                        selected={selectedTeams.some(selectedTeam => selectedTeam.id === team.id)}
-                                    >
-                                        {team.name}
-                                    </option>
-                                ))}
-                            </select>
                             <div className="form-group mt-3">
-                                <label htmlFor="team" className="mb-2">Anoniem</label>
+                                <label htmlFor="team" className="mb-2">Team</label>
+                                <select
+                                    id="team"
+                                    className="form-control"
+                                    name="team"
+                                    value={selectedTeams.map(team => team.id)}
+                                    multiple={true}
+                                    onChange={(e) =>
+                                        setSelectedTeams(
+                                            Array.from(e.target.selectedOptions, option => ({
+                                                id: option.value,
+                                                name: option.label
+                                            }))
+                                        )
+                                    }
+                                >
+                                    {teams.map(team => (
+                                        <option
+                                            key={team.id}
+                                            value={team.id}
+                                            selected={selectedTeams.some(selectedTeam => selectedTeam.id === team.id)}
+                                        >
+                                            {team.name}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div className="form-group mt-3">
+                                <label htmlFor="anonymous" className="mb-2">Anoniem</label>
 
                                 <select
                                     id="anonymous"

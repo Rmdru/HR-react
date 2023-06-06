@@ -21,8 +21,8 @@ if __name__ == "__main__":
     # Import the necessary models and routes
     # from models.TeamModel import Team
     # from models.UserModel import User
-    from models.AnswerModel import Answer
-    # from models.SurveyModel import Surveys
+    # from models.AnswerModel import Answer
+    # from models.SurveyModel import Survey
     # from models.QuestionModel import Question
     # from models.UserTeamModel import UserTeam
     # from routes.TeamRoutes import team_api
@@ -38,9 +38,10 @@ if __name__ == "__main__":
     from routes.SurveyRoutes import survey_api
     from routes.TeamRoutes import team_api
     from routes.QuestionRoutes import question_api
+    from routes.AnswerRoutes import answer_api
 
     # Register the blueprints
-    blueprint_name = [member_api, survey_api, team_api, question_api]
+    blueprint_name = [member_api, survey_api, team_api, question_api, answer_api]
     for name in blueprint_name:
         app.register_blueprint(name)
 
