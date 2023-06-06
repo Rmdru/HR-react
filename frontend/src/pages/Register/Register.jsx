@@ -25,7 +25,7 @@ function Signup() {
   };
 
   return (
-    <div>
+    <div className="authcontainer">
       <h1>Register</h1>
       <form onSubmit={handleSubmit}>
         <div>
