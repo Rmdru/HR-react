@@ -45,6 +45,8 @@ class SurveyController():
 
     @staticmethod
     def mail_members(id = ""):
-        msg = Message('Hello', sender='1056362@hr.nl', recipients=['rmdruijter@gmail.com'])
+        msg = Message('Hello', sender='hogeschoolrotterdam1056362@gmail.com', recipients=['1056362@hr.nl'])
         msg.body = "Hello Flask message sent from Flask-Mail"
         mail.send(msg)
+
+        return jsonify("success"), 201

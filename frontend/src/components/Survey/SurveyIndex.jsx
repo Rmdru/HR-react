@@ -35,10 +35,7 @@ function SurveyIndex() {
     };
 
     const sendMail = (surveyId) => {
-        axios.get(`http://127.0.0.1:5000/api/surveys/mail/${surveyId}`)
-            .then((response) => {
-
-            });
+        axios.get(`http://127.0.0.1:5000/api/surveys/mail/${surveyId}`);
     };
 
     return (
