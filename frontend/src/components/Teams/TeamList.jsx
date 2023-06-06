@@ -52,11 +52,10 @@ function TeamList() {
                 ))}
                 </tbody>
             </table>
-
-
         </>
     );
 }
 
 
 export default TeamList;
+
