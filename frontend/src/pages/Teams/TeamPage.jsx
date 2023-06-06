@@ -1,13 +1,11 @@
 import React from "react";
 import TeamCreateModal from "../../components/Teams/TeamCreateModal"
-import TeamEditModal from "../../components/Teams/TeamEditModal"
 import TeamList from "../../components/Teams/TeamList";
 
 function TeamPage() {
     return (
         <>
             <TeamCreateModal/>
-            <TeamEditModal/>
             <div id={"TeamPage"}>
                 <div className="container mt-5">
                     <div className="top d-flex justify-content-between my-5">

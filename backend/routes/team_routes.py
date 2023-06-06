@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
-from config import Config
-from controllers.team_controller import team_controller
+from backend.config import Config
+from backend.controllers.team_controller import team_controller
 
 # Create a Blueprint for the team API
 team_api = Blueprint('team_api', __name__, url_prefix=Config.teams_api_prefix)
@@ -31,13 +31,13 @@ def create_team():
 # Endpoint to retrieve a specific team by ID
 @team_api.route('/<id>', methods=['GET'])
 def show_team(id):
-    return jsonify(team_controller.show_team(id))
+    return team_controller.show_team(id)
 
 # Endpoint to update a specific team by ID
 @team_api.route('/<id>', methods=['POST'])
 def update_team(id):
-    data = request.get_json()
-    return jsonify(team_controller.update_team(id, data))
+    team_controller.update_team(id)
+    return jsonify({'message': 'Team updated successfully'})
 
 # Endpoint to delete a specific team by ID
 @team_api.route('/<id>', methods=['DELETE'])
