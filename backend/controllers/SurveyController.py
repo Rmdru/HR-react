@@ -4,6 +4,7 @@ from backend.models.SurveyTeamModel import SurveyTeam
 from flask import jsonify, request
 from backend.app import db
 
+
 class SurveyController():
     @staticmethod
     def get_all_surveys():
