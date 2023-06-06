@@ -41,8 +41,8 @@ def login():
     data = request.get_json()
 
     # Retrieve the required fields from the JSON dat
-    email = data.get['email']
-    password = data.get['password']
+    email = data.get('email')
+    password = data.get('password')
 
     user = User.query.filter_by(email=email).first()
     if user and check_password_hash(user.password, password):

@@ -1,9 +1,9 @@
 # Import the os module for operating system-related functionalities
 import os
 
+
 # Configuration class for the Flask application.
 class Config:
-
     # IP address on which the Flask application will be served
     FLASK_IP = "0.0.0.0"
     # Port on which the Flask application will listen
