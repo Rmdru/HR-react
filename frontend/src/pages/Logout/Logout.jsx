@@ -8,7 +8,7 @@ function Logout() {
   const handleLogout = async (e) => {
     e.preventDefault();
     try {
-      await axios.get('http://localhost:5000/user/logout');
+      await axios.get('http://localhost:5000/api/users/logout');
       navigate('/inloggen');
     } catch (error) {
       console.error(error);

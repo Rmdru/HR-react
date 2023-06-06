@@ -1,13 +1,13 @@
 from flask import Blueprint, request, jsonify, session
 from werkzeug.security import generate_password_hash, check_password_hash
-
+from backend.config import Config
 from backend.models.UserModel import User, db
 
-user_bp = Blueprint('user', __name__)
+user_api = Blueprint('user', __name__, url_prefix=Config.users_api_prefix)
 
 
 # Signup route
-@user_bp.route('/signup', methods=['POST'])
+@user_api.route('/signup', methods=['POST'])
 def signup():
     data = request.get_json()
 
@@ -36,7 +36,7 @@ def signup():
 
 
 # Login route
-@user_bp.route('/login', methods=['POST'])
+@user_api.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
 
@@ -54,7 +54,7 @@ def login():
 
 
 # Logout route
-@user_bp.route('/logout', methods=['GET'])
+@user_api.route('/logout', methods=['GET'])
 def logout():
     session.pop('user_id', None)  # Remove the user ID from the session
     return jsonify({'message': 'Logout successful!'})

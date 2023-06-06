@@ -1,4 +1,4 @@
-from backend.extensions import db
+from __main__ import db, app
 from backend.models.UserTeamModel import UserTeam
 
 

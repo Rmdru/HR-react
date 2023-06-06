@@ -11,6 +11,9 @@ db.init_app(app)
 migrate.init_app(app, db)
 CORS(app)
 
+# Secret key for the session
+app.secret_key = '1335eb3948fb7b64a029aa29'
+
 
 # Shell context processor for Flask shell
 @app.shell_context_processor
@@ -38,14 +41,12 @@ if __name__ == "__main__":
     from routes.SurveyRoutes import survey_api
     from routes.TeamRoutes import team_api
     from routes.QuestionRoutes import question_api
-    from routes.UserRoutes import user_bp
+    from routes.UserRoutes import user_api
 
     # Register the blueprints
-    blueprint_name = [member_api, survey_api, team_api, question_api]
+    blueprint_name = [member_api, survey_api, team_api, question_api, user_api]
     for name in blueprint_name:
         app.register_blueprint(name)
-
-    app.register_blueprint(user_bp)
 
     # Run the Flask application on the specified host, port, and with debug mode enabled or disabled
     app.run(host=Config.FLASK_IP, port=Config.FLASK_PORT, debug=Config.FLASK_DEBUG)

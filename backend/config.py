@@ -25,3 +25,5 @@ class Config:
     questions_api_prefix = "/api/questions"
     # Prefix for survey-related API endpoints
     surveys_api_prefix = "/api/surveys"
+    # Prefix for user-related API endpoints
+    users_api_prefix = "/api/users"
