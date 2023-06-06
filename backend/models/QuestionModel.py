@@ -11,7 +11,7 @@ class Question(db.Model):
     options = db.Column(db.String(255), nullable=False)
     survey_id = db.Column(db.Integer, db.ForeignKey('survey.id'))
 
-    # Relationship to access the associated Survey object
+    # Relationship to access the associated Surveys object
     surveys = db.relationship('Survey', backref=db.backref('surveys', lazy=True))
 
     # Convert the Question object to a dictionary representation

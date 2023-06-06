@@ -21,6 +21,8 @@ if __name__ == "__main__":
     # Import the necessary models and routes
     # from models.TeamModel import Team
     # from models.UserModel import User
+    from models.AnswerModel import Answer
+    # from models.SurveyModel import Surveys
     # from models.QuestionModel import Question
     # from models.UserTeamModel import UserTeam
     # from routes.TeamRoutes import team_api

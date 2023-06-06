@@ -53,7 +53,6 @@ function QuestionEditModal({surveyId, initialQuestions}) {
 
         // Clear the error state if there are no empty questions
         setError(false);
-        console.log(surveyId, 'sdfsd')
         axios.post(`http://127.0.0.1:5000/api/questions/${surveyId}`, questions)
             .then(response => {
                 window.location.reload();
@@ -63,7 +62,6 @@ function QuestionEditModal({surveyId, initialQuestions}) {
             });
     };
 
-    console.log(questions);
 
     return (
         <div className="modal fade" id="modalEditQuestion" tabIndex="-1" role="dialog"
@@ -84,13 +82,17 @@ function QuestionEditModal({surveyId, initialQuestions}) {
                                     {/*<pre>{JSON.stringify(question, null, 2)}</pre>*/}
                                     <div className="form-group mt-3">
                                         <label htmlFor={`type_${index}`} className="mb-2">Type</label>
-                                        <select className="form-control" id={`type_${index}`} name="type"
-                                                onChange={(e) => handleTypeChange(e, index)}>
-                                            <option value={0} selected={question.type === false}>Open vraag</option>
-                                            <option value={1} selected={question.type === true}>Meer keuze</option>
+                                        <select
+                                            className="form-control"
+                                            id={`type_${index}`}
+                                            name="type"
+                                            value={question.type ? '1' : '0'}
+                                            onChange={(e) => handleTypeChange(e, index)}
+                                        >
+                                            <option value="0">Open vraag</option>
+                                            <option value="1">Meer keuze</option>
                                         </select>
                                     </div>
-
                                     <div className="form-group mt-3">
                                         <label htmlFor={`question_${index}`} className="mb-2">Vraag</label>
                                         <input
@@ -98,7 +100,7 @@ function QuestionEditModal({surveyId, initialQuestions}) {
                                             className={`form-control ${error && question.question.trim() === '' ? 'is-invalid' : ''}`}
                                             id={`question_${index}`}
                                             name="question"
-                                            value={question.text}
+                                            defaultValue={question.text}
                                             placeholder="Vraag"
                                             onChange={(e) => handleQuestionChange(e, index)}
 
@@ -116,7 +118,7 @@ function QuestionEditModal({surveyId, initialQuestions}) {
                                                     <input
                                                         type="text"
                                                         className="form-control"
-                                                        value={option}
+                                                        defaultValue={option}
                                                         placeholder={`Optie ${String.fromCharCode(65 + optionIndex)}`}
                                                         onChange={(e) => handleOptionChange(e, index, optionIndex)}
                                                     />
