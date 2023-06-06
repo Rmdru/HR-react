@@ -39,8 +39,8 @@ def show_member(id):
 # Endpoint to update a specific member by ID
 @member_api.route('/<id>', methods=['POST'])
 def update_member(id):
-    data = request.get_json()
-    return jsonify(member_controller.update_member(id, data))
+    member_controller.update_member(id)
+    return jsonify({'message': 'Teammember updated successfully'})
 
 # Endpoint to delete a specific member by ID
 @member_api.route('/<id>', methods=['DELETE'])

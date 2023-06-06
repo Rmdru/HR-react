@@ -35,17 +35,18 @@ class MemberController():
     # Retrieve the user to update by ID from the database
     @staticmethod
     def update_member(id):
+        memberName = request.json.get('name')
         user = User.query.get(id)
         if not user:
             return jsonify({'message': 'Member not found'}), 404
 
-        name = request.form.get('name')
+        name = memberName
 
         user.name = name
 
         db.session.commit()
 
-        return redirect(url_for('members_index'))
+        return 'Member updated successfully'
 
     # Retrieve the user to delete by ID from the database
     @staticmethod

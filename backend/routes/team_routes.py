@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
-from backend.config import Config
-from backend.controllers.team_controller import team_controller
+from config import Config
+from controllers.team_controller import team_controller
 
 # Create a Blueprint for the team API
 team_api = Blueprint('team_api', __name__, url_prefix=Config.teams_api_prefix)
