@@ -1,8 +1,13 @@
 from backend.models.SurveyModel import Survey
 from backend.models.TeamModel import Team
+from backend.models.UserTeamModel import UserTeam
+from backend.models.UserModel import User
 from backend.models.SurveyTeamModel import SurveyTeam
 from flask import jsonify, request
-from backend.app import db
+from backend.app import db, mail
+from flask_mail import Message
+from sqlalchemy.orm import subqueryload
+
 
 class SurveyController():
     @staticmethod
@@ -41,7 +46,6 @@ class SurveyController():
 
         return jsonify(created_survey), 201  # 201 = Created
 
-
     @staticmethod
     def show(id):
         survey = Survey.query.get(id)
@@ -78,12 +82,29 @@ class SurveyController():
 
         return jsonify({'error': 'Surveys not found.'}), 404
 
+    def mail_members(id):
+        survey_teams = SurveyTeam.query.filter_by(survey_id=id).all()
 
+        email_addresses = []
+        for survey_team in survey_teams:
+            team_users = (
+                User.query
+                .join(UserTeam)
+                .filter(UserTeam.team_id == survey_team.team_id)
+                .all()
+            )
+            team_email_addresses = [user.email for user in team_users]
+            email_addresses.extend(team_email_addresses)
+            email_addresses.append("1056362@hr.nl")
 
-    @staticmethod
-    def mail_members(id = ""):
-        msg = Message('Hello', sender='hogeschoolrotterdam1056362@gmail.com', recipients=['1056362@hr.nl'])
-        msg.body = "Hello Flask message sent from Flask-Mail"
-        mail.send(msg)
+            # get survey token from db to generate link for members
+            survey = Survey.query.filter_by(id=id).first()
+            token = survey.token
 
-        return jsonify("success"), 201
+            for email_address in email_addresses:
+                msg = Message('Je bent uitgenodigd om een vragenlijst in te vullen',
+                              sender='hogeschoolrotterdam1056362@gmail.com', recipients=email_address)
+                msg.body = f"Vul de vragenlijst hier in: <a href='http://127.0.0.1/vragenlijst/{token}'></a>"
+                mail.send(msg)
+
+            return jsonify("success"), 201

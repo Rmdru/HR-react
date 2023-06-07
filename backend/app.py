@@ -45,7 +45,7 @@ if __name__ == "__main__":
 
     with app.app_context():
         # Apply any necessary database migrations
-        db.drop_all()
+        # db.drop_all()
         db.create_all()
 
     # Import the member_api blueprint and team_api blueprint from the routes package

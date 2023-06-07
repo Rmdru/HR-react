@@ -42,7 +42,12 @@ function SurveyList() {
             });
     };
 
-    console.log(modalSurveyId, 'modalSurveyId')
+    const sendMail = (surveyId) => {
+       axios.get(`http://127.0.0.1:5000/api/surveys/mail/${surveyId}`)
+            .then((response) => {
+                console.log(response)
+            });
+    };
 
     return (
         <>
@@ -128,6 +133,7 @@ function SurveyList() {
                             <a
                                 href="#"
                                 className="btn btn-success"
+                                onClick={() => sendMail(survey.id)}
                             >
                                 Mails versturen
                             </a>
