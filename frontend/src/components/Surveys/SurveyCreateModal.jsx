@@ -1,28 +1,30 @@
 import React, {useEffect, useState} from 'react';
 
-function SurveyEditModal() {
+function SurveyCreateModel() {
     const [teams, setTeams] = useState([]);
     const [surveyName, setSurveyName] = useState("");
     const [selectedTeams, setSelectedTeams] = useState([]);
+    const [anonymous, setAnonymous] = useState(false);
 
-    // useEffect(() => {
-    //     fetch('http://127.0.0.1:5000/api/teams')
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             setTeams(data);
-    //         })
-    //         .catch(error => {
-    //             console.error('There was a problem fetching data:', error);
-    //         });
-    // }, []);
+    useEffect(() => {
+        fetch('http://127.0.0.1:5000/api/teams')
+            .then(response => response.json())
+            .then(data => {
+                setTeams(data);
+            })
+            .catch(error => {
+                console.error('There was a problem fetching data:', error);
+            });
+    }, []);
 
     const handleSaveChanges = () => {
         const surveyData = {
             name: surveyName,
-            teams: selectedTeams
+            teams: selectedTeams,
+            anonymous: anonymous
         };
 
-        fetch('http://127.0.0.1:5000/api/surveys/', {
+        fetch('http://127.0.0.1:5000/api/surveys', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -31,20 +33,20 @@ function SurveyEditModal() {
         })
             .then(response => response.json())
             .then(data => {
-                console.log("Survey created successfully:", data);
-                // Reset form fields or navigate to a new page
+                console.log("Surveys created successfully:", data);
+                window.location.reload();
             })
             .catch(error => {
                 console.error('There was a problem creating the survey:', error);
             });
     };
     return (
-        <div className="modal fade" id="modalEditSurvey" tabIndex="-1" role="dialog"
+        <div className="modal fade" id="modalCreateSurvey" tabIndex="-1" role="dialog"
              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered" role="document">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLongTitle">Vragenlijst aanpassen</h5>
+                        <h5 className="modal-title" id="exampleModalLongTitle">Vragenlijst toevoegen</h5>
                         <button type="button" className="close bg-white border-0" data-dismiss="modal"
                                 aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -59,11 +61,26 @@ function SurveyEditModal() {
                             </div>
                             <div className="form-group mt-3">
                                 <label htmlFor="team" className="mb-2">Team</label>
-                                <select id="team" className="form-control" name="team" value={selectedTeams} multiple={true}
+                                <select id="team" className="form-control" name="team" value={selectedTeams}
+                                        multiple={true}
                                         onChange={(e) => setSelectedTeams(Array.from(e.target.selectedOptions, option => option.value))}>
                                     {teams.map(team => (
                                         <option key={team.id} value={team.id}>{team.name}</option>
                                     ))}
+                                </select>
+                            </div>
+
+                            <div className="form-group mt-3">
+                                <label htmlFor="team" className="mb-2">Anoniem</label>
+                                <select
+                                    id="anonymous"
+                                    className="form-control"
+                                    name="anonymous"
+                                    value={anonymous}
+                                    onChange={(e) => setAnonymous(e.target.value === "true")}
+                                >
+                                    <option value="true">Ja</option>
+                                    <option value="false">Nee</option>
                                 </select>
                             </div>
                         </form>
@@ -80,4 +97,4 @@ function SurveyEditModal() {
     );
 }
 
-export default SurveyEditModal;
+export default SurveyCreateModel;

@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import QuestionCreateModal from "../../components/Questions/QuestionCreateModal";
 import QuestionEditModal from "../../components/Questions/QuestionEditModal";
+import SurveyEditModal from "../../components/Surveys/SurveyEditModal";
 import axios from "axios";
 
-function SurveyIndex() {
+function SurveyList() {
     const [surveys, setSurveys] = useState([]);
     const [modalQuestions, setModalQuestions] = useState([]);
     const [modalSurveyId, setModalSurveyId] = useState(null);
@@ -34,10 +35,23 @@ function SurveyIndex() {
         setModalSurveyId(surveyId);
     };
 
+    const handleDelete = (surveyId) => {
+        axios.delete(`http://127.0.0.1:5000/api/surveys/${surveyId}`)
+            .then((response) => {
+                window.location.reload();
+            });
+    };
+
+    console.log(modalSurveyId, 'modalSurveyId')
+
     return (
         <>
             {modalSurveyId && (
                 <QuestionCreateModal surveyId={modalSurveyId}/>
+            )}
+
+            {modalSurveyId && (
+                <SurveyEditModal surveyId={modalSurveyId}/>
             )}
 
             {modalSurveyId && (
@@ -50,8 +64,10 @@ function SurveyIndex() {
                     <th scope="col">#</th>
                     <th scope="col">Naam</th>
                     <th scope="col">Team</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
+                    <th scope="col">..</th>
+                    <th scope="col">..</th>
+                    <th scope="col">..</th>
+                    <th scope="col">..</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -89,7 +105,33 @@ function SurveyIndex() {
                                 </a>
                             )}
                         </td>
-
+                        <td>
+                            <a
+                                href="#"
+                                className="btn btn-primary"
+                                data-toggle="modal"
+                                data-target="#modalEditSurvey"
+                                onClick={() => handleOpenModal(survey.id)}
+                            >
+                                Aanpassen
+                            </a>
+                        </td>
+                        <td>
+                            <a
+                                className="btn btn-danger"
+                                onClick={() => handleDelete(survey.id)}
+                            >
+                                Verwijderen
+                            </a>
+                        </td>
+                        <td>
+                            <a
+                                href="#"
+                                className="btn btn-success"
+                            >
+                                Mails versturen
+                            </a>
+                        </td>
                     </tr>
                 ))}
                 </tbody>
@@ -98,4 +140,4 @@ function SurveyIndex() {
     );
 }
 
-export default SurveyIndex;
+export default SurveyList;
