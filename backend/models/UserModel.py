@@ -1,8 +1,10 @@
-from backend.extensions import db
+from __main__ import db, app
 from backend.models.UserTeamModel import UserTeam
+
 
 # This class represents the User model in the database.
 class User(db.Model):
+    __tablename__ = 'user'
     # Unique identifier, name, email, password and role for the user
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)

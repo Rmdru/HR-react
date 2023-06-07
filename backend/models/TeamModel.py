@@ -1,5 +1,6 @@
 from __main__ import db, app
 
+
 # This class represents the Team model in the database.
 class Team(db.Model):
     # Unique identifier and name for the team

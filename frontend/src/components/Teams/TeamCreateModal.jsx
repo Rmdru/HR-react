@@ -13,7 +13,7 @@ const handleSaveChanges = () => {
 
   let config = {
     method: "post",
-    url: "http://127.0.0.1:5000/api/v1/teams/create",
+    url: "http://127.0.0.1:5000/api/teams",
     headers: {
       "Content-Type": "application/json",
     },

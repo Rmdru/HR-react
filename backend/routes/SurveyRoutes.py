@@ -23,17 +23,17 @@ def create_survey():
 # Endpoint to retrieve a specific survey by ID
 @survey_api.route('/<id>', methods=['GET'])
 def show_survey(id):
-    return 'show survey'
+    return SurveyController.show(id)
 
 # Endpoint to update a specific survey by ID
 @survey_api.route('/<id>', methods=['POST'])
-def update_surveyr(id):
-    return 'update survey'
+def update_survey(id):
+    return SurveyController.update(id)
 
 # Endpoint to delete a specific survey by ID
 @survey_api.route('/<id>', methods=['DELETE'])
 def delete_survey(id):
-    return 'delete survey'
+    return SurveyController.delete(id)
 
 @survey_api.route("/mail/<id>", methods=['GET'])
 def mail_members(id):
