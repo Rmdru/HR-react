@@ -1,4 +1,4 @@
-from backend.extensions import db
+from backend.app import db
 from backend.models.TeamModel import Team
 from flask import jsonify, request, redirect, url_for
 

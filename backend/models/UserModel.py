@@ -1,6 +1,7 @@
 from __main__ import db, app
 from backend.models.UserTeamModel import UserTeam
 
+
 # This class represents the User model in the database.
 class User(db.Model):
     __tablename__ = 'user'

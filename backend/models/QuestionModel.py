@@ -1,6 +1,7 @@
 from __main__ import db, app
 from backend.models.SurveyModel import Survey
 
+
 # This class represents the Question model in the database.
 class Question(db.Model):
     __tablename__ = 'question'

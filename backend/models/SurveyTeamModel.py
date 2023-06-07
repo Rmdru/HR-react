@@ -1,5 +1,6 @@
 from __main__ import db, app
 
+
 # Define the pivot table model
 class SurveyTeam(db.Model):
     survey_id = db.Column(db.Integer, db.ForeignKey('survey.id'), primary_key=True)

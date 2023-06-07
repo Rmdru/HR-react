@@ -9,7 +9,7 @@ function TeamList() {
 
   useEffect(() => {
     // Fetch data from the API when the component mounts
-    fetch('http://127.0.0.1:5000/api/teams/')
+    fetch('http://127.0.0.1:5000/api/teams')
       .then(response => response.json()) // Convert response to JSON
       .then(data => {
         setTeams(data); // Update 'teams' state with fetched data

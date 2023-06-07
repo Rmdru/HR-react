@@ -1,6 +1,7 @@
-from backend.extensions import db
+from __main__ import db
 
- # This class represents the UserTeam pivot model in the database.
+
+# This class represents the UserTeam pivot model in the database.
 class UserTeam(db.Model):
     # Unique identifier for the user-team relationship
     id = db.Column(db.Integer, primary_key=True)

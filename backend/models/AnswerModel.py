@@ -2,6 +2,7 @@ from __main__ import db, app
 from backend.models.UserModel import User
 from backend.models.QuestionModel import Question
 
+
 class Answer(db.Model):
     __tablename__ = 'answer'
 
