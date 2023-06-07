@@ -19,8 +19,8 @@ class TeamController():
     def show_team(id):
         team = Team.query.get(id)
         if not team:
-            return jsonify({'message': 'Team not found'}), 404
-        return jsonify({'team': team.to_dict()}), 200
+            return {'message': 'Team not found'}
+        return {'team': team.to_dict()}
 
     # Retrieve the name from the request form
     @staticmethod

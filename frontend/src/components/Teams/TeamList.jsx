@@ -7,7 +7,7 @@ function TeamList() {
     const [modalTeamId, setModalTeamId] = useState(null);
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/v1/teams/all')
+        fetch('http://localhost:5000/api/teams')
             .then(response => response.json())
             .then(data => {
                 setTeams(data);

@@ -5,7 +5,7 @@ function TeamEditModal({teamId, onClose}) {
     const [teamName, setTeamName] = useState("");
     useEffect(() => {
         axios
-            .get(`http://localhost:5000/api/v1/teams/${teamId}`)
+            .get(`http://localhost:5000/api/teams/${teamId}`)
             .then((response) => {
                 const teamData = response.data.team;
                 setTeamName(teamData.name);
@@ -19,24 +19,9 @@ function TeamEditModal({teamId, onClose}) {
         const data = {
             name: teamName
         };
-  const handleSaveChanges = () => {
-    if (actionType === "change") {
-      let data = JSON.stringify({
-        name: teamName,
-      });
-
-      let config = {
-        method: "post",
-        maxBodyLength: Infinity,
-        url: "http://127.0.0.1:5000/api/teams/create",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        data: data
-      };
 
         axios
-            .post(`http://localhost:5000/api/v1/teams/${teamId}`, data)
+            .post(`http://localhost:5000/api/teams/${teamId}`, data)
             .then((response) => {
                 window.location.reload();
             })
