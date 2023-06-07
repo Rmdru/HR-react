@@ -32,7 +32,7 @@ def create_team():
 # Endpoint to retrieve a specific team by ID
 @team_api.route('/<id>', methods=['GET'])
 def show_team(id):
-    return jsonify(TeamController.show_team(id))
+    return TeamController.show_team(id)
 
 # Endpoint to update a specific team by ID
 @team_api.route('/<id>', methods=['POST'])

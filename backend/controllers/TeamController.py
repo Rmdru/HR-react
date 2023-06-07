@@ -20,7 +20,7 @@ class TeamController():
         team = Team.query.get(id)
         if not team:
             return {'message': 'Team not found'}
-        return {'team': team.to_dict()}
+        return jsonify({'team': team.to_dict()})
 
     # Retrieve the name from the request form
     @staticmethod
