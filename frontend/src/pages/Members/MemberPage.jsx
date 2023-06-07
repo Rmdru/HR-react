@@ -12,7 +12,7 @@ function MemberPage() {
                         <h1>Lijst van alle teamleden</h1>
 
                         <a href="#" className={"btn btn-primary d-flex align-items-center"} data-toggle="modal"
-                           data-target="#modalMemberCreateModal">Teamlid aanmaken</a>
+                           data-target="#MemberCreateModal">Teamlid aanmaken</a>
                     </div>
                     <MemberList/>
                 </div>

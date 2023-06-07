@@ -39,7 +39,7 @@ function MemberCreateModal() {
   return (
     <div
       className="modal fade"
-      id="modalMemberCreateModal"
+      id="MemberCreateModal"
       tabIndex="-1"
       role="dialog"
       aria-labelledby="exampleModalCenterTitle"

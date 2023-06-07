@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-// Define state variable 'teamName' and its setter functions
 function TeamCreateModal() {
   const [teamName, setTeamName] = useState("");
-
 
 const handleSaveChanges = () => {
   let data = JSON.stringify({
@@ -31,11 +29,10 @@ const handleSaveChanges = () => {
     });
 };
 
-
   return (
     <div
       className="modal fade"
-      id="modalTeamCreateModal"
+      id="TeamCreateModal"
       tabIndex="-1"
       role="dialog"
       aria-labelledby="exampleModalCenterTitle"

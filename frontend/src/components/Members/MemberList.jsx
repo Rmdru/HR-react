@@ -24,8 +24,8 @@ function MemberList() {
         await axios.delete(`/members/${id}`);
         setMembers(members.filter((user) => user.id !== id));
         };
-    
-    
+
+
     return (
         <table className="table">
             <thead className="thead-light">
@@ -35,6 +35,7 @@ function MemberList() {
                 <th scope="col">Email</th>
                 <th scope="col">Team</th>
                 <th scope="col">...</th>
+<<<<<<< HEAD
             </tr>
             </thead>
             <tbody>
@@ -57,3 +58,30 @@ function MemberList() {
 }
 
 export default MemberList;
+=======
+                </tr>
+                </thead>
+                <tbody>
+                {members.map(member => (
+                    <tr key={member.id}>
+                        <th scope="row">{member.id}</th>
+                        <td>{member.name}</td>
+                        <td>{member.email}</td>
+                        <td>{member.team_name}</td>
+                        <td>
+                            <a href="#" className="btn btn-primary" data-toggle="modal">Teamleden</a>
+                        </td>
+                        <td>
+                            <a href="#" className="btn btn-primary" data-toggle="modal"
+                               data-target="#MemberEditModal" onClick={() => handleOpenModal(member.id)}>Aanpassen</a>
+                        </td>
+                    </tr>
+                ))}
+                </tbody>
+            </table>
+        </>
+    );
+}
+
+export default MemberList;
+>>>>>>> origin/team

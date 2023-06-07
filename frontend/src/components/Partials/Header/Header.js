@@ -17,7 +17,7 @@ export function Header() {
         <Navbar bg="light" expand="lg">
             <Container>
                 <Navbar.Brand href="/">
-                    <img src="/logo-dyflexis-2.svg" className="w-50" />
+                <img src="/logo-dyflexis-2.svg" className="w-50" />
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">

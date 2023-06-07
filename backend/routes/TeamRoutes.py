@@ -23,7 +23,7 @@ def create_team():
     data = request.get_json()
     name = data['name']
 
-    TeamController.create_team(name=name)
+    team_controller.create_team(name=name)
 
     return jsonify({
         "msg" : "successfully created team"
@@ -38,7 +38,7 @@ def show_team(id):
 @team_api.route('/<id>', methods=['POST'])
 def update_team(id):
     data = request.get_json()
-    return jsonify(TeamController.update_team(id, data))
+    return jsonify(team_controller.update_team(id, data))
 
 # Endpoint to delete a specific team by ID
 @team_api.route('/<id>', methods=['DELETE'])
