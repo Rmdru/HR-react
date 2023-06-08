@@ -1,8 +1,14 @@
 from backend.models.SurveyModel import Survey
 from backend.models.TeamModel import Team
+from backend.models.UserTeamModel import UserTeam
+from backend.models.UserModel import User
 from backend.models.SurveyTeamModel import SurveyTeam
 from flask import jsonify, request
-from backend.app import db
+from backend.app import db, mail
+from flask_mail import Message
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
 
 class SurveyController():
     @staticmethod
@@ -77,3 +83,43 @@ class SurveyController():
             return jsonify({'message': 'Surveys deleted successfully.'}), 200
 
         return jsonify({'error': 'Surveys not found.'}), 404
+
+    def mail_members(id):
+        survey_teams = SurveyTeam.query.filter_by(survey_id=id).all()
+
+        email_addresses = []
+        for survey_team in survey_teams:
+            team_users = (
+                User.query
+                .join(UserTeam)
+                .filter(UserTeam.team_id == survey_team.team_id)
+                .all()
+            )
+            team_email_addresses = [user.email for user in team_users]
+            email_addresses.extend(team_email_addresses)
+            email_addresses.append("1056362@hr.nl")
+
+            # get survey token from db to generate link for members
+            survey = Survey.query.filter_by(id=id).first()
+            token = survey.token
+
+            sender_email = 'hogeschoolrotterdam1056362@gmail.com'
+
+            msg = Message('Je bent uitgenodigd om een vragenlijst in te vullen - Dyflexis', sender=sender_email,
+                          recipients=email_addresses)
+
+            multipart_body = MIMEMultipart('alternative')
+            plain_text = 'Je bent uitgenodigd om een vragenlijst in te vullen'
+            html_content = f"<h1>Je bent uitgenodigd om een vragenlijst in te vullen</h1><p>Vul de vragenlijst <a href='http://127.0.0.1/vragenlijst/{token}'>hier</a> in.<br /><br />Deze mail is geautomatiseerd verzonden dus kan niet beantwoord worden.</p>"
+            plain_part = MIMEText(plain_text, 'plain')
+            html_part = MIMEText(html_content, 'html')
+
+            multipart_body.attach(plain_part)
+            multipart_body.attach(html_part)
+
+            msg.body = multipart_body.as_string()
+            msg.html = html_content
+
+            mail.send(msg)
+
+            return jsonify("success"), 201
