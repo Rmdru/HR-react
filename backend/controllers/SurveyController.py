@@ -6,7 +6,8 @@ from backend.models.SurveyTeamModel import SurveyTeam
 from flask import jsonify, request
 from backend.app import db, mail
 from flask_mail import Message
-from sqlalchemy.orm import subqueryload
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 
 class SurveyController():
@@ -101,10 +102,23 @@ class SurveyController():
             survey = Survey.query.filter_by(id=id).first()
             token = survey.token
 
-            for email_address in email_addresses:
-                msg = Message('Je bent uitgenodigd om een vragenlijst in te vullen',
-                              sender='hogeschoolrotterdam1056362@gmail.com', recipients=email_address)
-                msg.body = f"Vul de vragenlijst hier in: <a href='http://127.0.0.1/vragenlijst/{token}'></a>"
-                mail.send(msg)
+            sender_email = 'hogeschoolrotterdam1056362@gmail.com'
+
+            msg = Message('Je bent uitgenodigd om een vragenlijst in te vullen - Dyflexis', sender=sender_email,
+                          recipients=email_addresses)
+
+            multipart_body = MIMEMultipart('alternative')
+            plain_text = 'Je bent uitgenodigd om een vragenlijst in te vullen'
+            html_content = f"<h1>Je bent uitgenodigd om een vragenlijst in te vullen</h1><p>Vul de vragenlijst <a href='http://127.0.0.1/vragenlijst/{token}'>hier</a> in.<br /><br />Deze mail is geautomatiseerd verzonden dus kan niet beantwoord worden.</p>"
+            plain_part = MIMEText(plain_text, 'plain')
+            html_part = MIMEText(html_content, 'html')
+
+            multipart_body.attach(plain_part)
+            multipart_body.attach(html_part)
+
+            msg.body = multipart_body.as_string()
+            msg.html = html_content
+
+            mail.send(msg)
 
             return jsonify("success"), 201
