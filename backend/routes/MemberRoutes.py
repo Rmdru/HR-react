@@ -46,3 +46,8 @@ def update_member(id):
 @member_api.route('/<id>', methods=['DELETE'])
 def delete_member(id):
     return jsonify(member_controller.delete_member(id))
+
+# Endpoint to retrieve members by survey ID
+@member_api.route("/survey/<id>", methods=['GET'])
+def get_all_members_by_survey(id):
+    return member_controller.get_all_members_by_survey(id)

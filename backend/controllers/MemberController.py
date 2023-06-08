@@ -2,6 +2,7 @@ from backend.app import db
 from backend.models.UserModel import User
 from backend.models.TeamModel import Team
 from backend.models.UserTeamModel import UserTeam
+from backend.models.SurveyTeamModel import SurveyTeam
 from flask import jsonify, request, redirect, url_for
 
 """ This class handles the logic and operations related to the Members of the application.
@@ -76,6 +77,31 @@ class MemberController():
 
         db.session.add(new_user_team)
         db.session.commit()
+
+    @staticmethod
+    def get_all_members_by_survey(id):
+        survey_teams = SurveyTeam.query.filter_by(survey_id=id).all()
+        all_users = []
+
+        for survey_team in survey_teams:
+            team_users = (
+                User.query
+                .join(UserTeam)
+                .filter(UserTeam.team_id == survey_team.team_id)
+                .all()
+            )
+
+            users_data = []
+            for user in team_users:
+                user_data = {
+                    'id': user.id,
+                    'name': user.name,
+                }
+                users_data.append(user_data)
+
+            all_users.extend(users_data)
+
+            return jsonify(all_users)
 
 # Create an instance of the MemberController class
 member_controller = MemberController()

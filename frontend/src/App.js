@@ -10,7 +10,8 @@ import QuestionPage from "./pages/Questions/QuestionPage"
 import {Reports} from "./pages/Reports/Reports"
 import {NotFound} from "./pages/NotFound/NotFound"
 import {Header} from "./components/Partials/Header/Header.js"
-import AnswerPage from "./pages/Answer/AnswerPage";
+import AnswerPage from "./pages/Answer/AnswerPage"
+import AnswerAdminPage from "./pages/Answer/AnswerAdminPage";
 import './App.css';
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
                 <Route path="/vragen" element={<QuestionPage/>}/>
                 <Route path="/rapportages" element={<Reports/>}/>
                 <Route path="/vragenlijst/*" element={<AnswerPage/>}/>
+                <Route path="/antwoorden" element={<AnswerAdminPage/>}/>
                 <Route path="/*" element={<NotFound/>}/>
             </Routes>
         </>
