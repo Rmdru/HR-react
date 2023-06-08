@@ -34,13 +34,14 @@ class AnswerController():
     def store():
         data = request.get_json()
         answers = data['answers']
+        print(answers)
         for answer in answers:
             answer = Answer(
-                survey_id=answer['survey_id'],
+                user_id='Anoniem',
                 question_id=answer['question_id'],
-                text=answer['text']
+                text=answer['value']
             )
             db.session.add(answer)
-        # db.session.add(answer)
-        # db.session.commit()
-        # return jsonify(answer.to_dict())
+            db.session.commit()
+
+        return 'Added answers to database', 201
