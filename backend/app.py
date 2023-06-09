@@ -11,6 +11,7 @@ load_dotenv()
 
 app = Flask(__name__)
 app.config.from_object(Config)
+cors = CORS(app)
 
 #Flask-Mail configuration
 app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER')
@@ -44,8 +45,8 @@ if __name__ == "__main__":
     # from models.SurveyModel import Survey
     # from models.QuestionModel import Question
     # from models.UserTeamModel import UserTeam
-    # from routes.TeamRoutes import team_api
-    # from routes.QuestionRoutes import question_api
+    from routes.TeamRoutes import team_api
+    from routes.QuestionRoutes import question_api
 
     with app.app_context():
         # Apply any necessary database migrations
