@@ -21,9 +21,10 @@ def create_answer():
     return AnswerController.store()
 
 # Endpoint to retrieve a specific answer by ID
-@answer_api.route('/<uuid>', methods=['GET'])
-def show_answer(uuid):
-    return AnswerController.show(uuid)
+@answer_api.route('/<token>', methods=['GET'])
+def show_answer(token):
+    print("token: ", token)
+    return AnswerController.get_questions_by_survey_id(token)
 
 # Endpoint to update a specific answer by ID
 @answer_api.route('/<id>', methods=['POST'])

@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import QuestionCreateModal from "../../components/Questions/QuestionCreateModal";
 import QuestionEditModal from "../../components/Questions/QuestionEditModal";
-import SurveyEditModal from "../../components/Surveys/SurveyEditModal";
 import axios from "axios";
 
 function SurveyList() {
@@ -133,7 +132,6 @@ function SurveyList() {
                             <a
                                 href="#"
                                 className="btn btn-success"
-                                onClick={() => sendMail(survey.id)}
                             >
                                 Mails versturen
                             </a>

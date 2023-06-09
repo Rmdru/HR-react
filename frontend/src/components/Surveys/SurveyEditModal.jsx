@@ -47,7 +47,6 @@ function SurveyEditModal(props) {
             });
     };
 
-    console.log(selectedTeams, 'tesstsefd')
     return (
         <div className="modal fade" id="modalEditSurvey" tabIndex="-1" role="dialog"
              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -62,7 +61,7 @@ function SurveyEditModal(props) {
                     </div>
                     <div className="modal-body">
                         <form>
-                            <pre>{JSON.stringify(survey, null, 2)}</pre>
+                            {/*<pre>{JSON.stringify(survey, null, 2)}</pre>*/}
 
                             <div className="form-group">
                                 <label htmlFor="name" className="mb-2">Naam</label>

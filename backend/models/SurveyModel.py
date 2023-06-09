@@ -1,7 +1,6 @@
 from __main__ import db, app
 import uuid
 
-
 # Define the Surveys model
 class Survey(db.Model):
     id = db.Column(db.Integer, primary_key=True)
