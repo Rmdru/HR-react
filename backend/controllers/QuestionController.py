@@ -2,6 +2,7 @@ from backend.app import db
 from backend.models.QuestionModel import Question
 from flask import jsonify, request
 
+
 class QuestionController:
 
     # Retrieve all questions from the database

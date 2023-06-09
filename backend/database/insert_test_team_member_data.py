@@ -21,7 +21,7 @@ departments = ["DIRECTIE", "ICT", "FINANCE", "HRM", "LOGISTICS"]
 for i in range(50):
     # Insert the new team member into the "user" table
     cursor.execute("""
-        INSERT INTO user (id, name, email, password, admin_role)
+        INSERT INTO user (id, name, email, password, role)
         VALUES (NULL, ?, ?, ?, ?)
     """, (fake.name(), fake.email(), fake.password(), random.choice([True, False])))
 

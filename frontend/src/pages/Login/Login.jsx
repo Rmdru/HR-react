@@ -1,23 +1,21 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import '../../../src/App.css';
 
-function Signup() {
+function Login() {
   const navigate = useNavigate();
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState(1);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/user/signup', {
-        name,
+      const response = await axios.post('http://localhost:5000/api/users/login', {
         email,
         password,
-        role,
       });
+      console.log(response.data.message);
       navigate('/');
     } catch (error) {
       console.error(error);
@@ -25,18 +23,9 @@ function Signup() {
   };
 
   return (
-    <div>
-      <h1>Register</h1>
+    <div className="authcontainer">
+      <h1>Login</h1>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
         <div>
           <label htmlFor="email">Email</label>
           <input
@@ -55,10 +44,10 @@ function Signup() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type="submit">Register</button>
+        <button type="submit">Login</button>
       </form>
     </div>
   );
 }
 
-export default Signup;
+export default Login;
