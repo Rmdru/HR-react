@@ -31,8 +31,8 @@ export function Overview() {
                 </Col>
                 <Col>
                     <Link to="/vragen" className="item">
-                        <span class="material-icons tileIcon fs-1">insights</span>
-                        <div class="flex">
+                        <span className="material-icons tileIcon fs-1">insights</span>
+                        <div className="flex">
                             <h2>Vragen</h2>
                             <div className="bttn">
                                 <span className="material-icons">keyboard_arrow_right</span>
@@ -43,34 +43,34 @@ export function Overview() {
             </Row>
             <Row className="gap-3 flex-column w-100">
                 <Col>
-                    <Link to="/teams" class="item">
-                        <span class="material-icons tileIcon fs-1">group</span>
-                        <div class="flex">
+                    <Link to="/teams" className="item">
+                        <span className="material-icons tileIcon fs-1">group</span>
+                        <div className="flex">
                             <h2>Teams</h2>
-                            <div class="bttn">
-                                <span class="material-icons">keyboard_arrow_right</span>
+                            <div className="bttn">
+                                <span className="material-icons">keyboard_arrow_right</span>
                             </div>
                         </div>
                     </Link>
                 </Col>
                 <Col>
-                    <Link to="/rapportages" class="item">
-                        <span class="material-icons tileIcon fs-1">insights</span>
-                        <div class="flex">
+                    <Link to="/rapportages" className="item">
+                        <span className="material-icons tileIcon fs-1">insights</span>
+                        <div className="flex">
                             <h2>Rapportages</h2>
-                            <div class="bttn">
-                                <span class="material-icons">keyboard_arrow_right</span>
+                            <div className="bttn">
+                                <span className="material-icons">keyboard_arrow_right</span>
                             </div>
                         </div>
                     </Link>
                 </Col>
                 <Col>
-                    <Link to="/antwoorden" class="item">
-                        <span class="material-icons tileIcon fs-1">insights</span>
-                        <div class="flex">
+                    <Link to="/antwoorden" className="item">
+                        <span className="material-icons tileIcon fs-1">insights</span>
+                        <div className="flex">
                             <h2>Antwoorden</h2>
-                            <div class="bttn">
-                                <span class="material-icons">keyboard_arrow_right</span>
+                            <div className="bttn">
+                                <span className="material-icons">keyboard_arrow_right</span>
                             </div>
                         </div>
                     </Link>

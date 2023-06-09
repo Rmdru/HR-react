@@ -3,10 +3,10 @@ from extensions import migrate, db
 from config import Config
 from flask_cors import CORS
 from flask_mail import Mail
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 import os
 
-load_dotenv()
+# load_dotenv()
 
 
 app = Flask(__name__)
@@ -41,6 +41,7 @@ if __name__ == "__main__":
     # Import the necessary models and routes
     # from models.TeamModel import Team
     # from models.UserModel import User
+    # from models.SurveyTeamModel import SurveyTeam
     # from models.AnswerModel import Answer
     # from models.SurveyModel import Survey
     # from models.QuestionModel import Question

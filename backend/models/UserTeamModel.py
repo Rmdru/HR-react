@@ -1,5 +1,6 @@
 from __main__ import db
-
+from backend.models.TeamModel import Team
+from backend.models.UserModel import User
 
 # This class represents the UserTeam pivot model in the database.
 class UserTeam(db.Model):

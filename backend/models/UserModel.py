@@ -1,5 +1,5 @@
 from __main__ import db, app
-from backend.models.UserTeamModel import UserTeam
+# from backend.models.UserTeamModel import UserTeam
 
 
 # This class represents the User model in the database.
@@ -14,8 +14,8 @@ class User(db.Model):
 
     # Convert the User object to a dictionary representation
     def to_dict(self):
-        user_team = UserTeam.query.filter_by(user_id=self.id).first()
-        team_name = user_team.teams.name if user_team else None
+        # user_team = UserTeam.query.filter_by(user_id=self.id).first()
+        # team_name = user_team.teams.name if user_team else None
 
         return {
             'id': self.id,
@@ -23,5 +23,4 @@ class User(db.Model):
             'email': self.email,
             'password': self.password,
             'role': self.role,
-            'team_name': team_name
         }

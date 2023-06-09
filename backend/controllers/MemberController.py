@@ -12,9 +12,9 @@ class MemberController():
     # Retrieve all users from the database
     @staticmethod
     def get_all_members():
-        users = User.query.all()
-        user_dict = [user.to_dict() for user in users]
-        return user_dict
+        members = User.query.all()
+        return jsonify([member.to_dict() for member in members])
+
 
     # Retrieve a specific user by ID from the database
     @staticmethod
@@ -22,16 +22,17 @@ class MemberController():
         user = User.query.get(id)
         if not user:
             return jsonify({'message': 'Member not found'}), 404
-        return jsonify({'member': user.to_dict()}), 200
+        return user.to_dict()
 
     # Retrieve the name from the request form
     @staticmethod
-    def create_member(name, email, department):
-
-        new_user = User(name=name, email=email, password=None, admin_role=False)
+    def create_member(name, email):
+        new_user = User(name=name, email=email, password=None, role=1)
 
         db.session.add(new_user)
         db.session.commit()
+
+        return new_user.to_dict(), 201
 
     # Retrieve the user to update by ID from the database
     @staticmethod

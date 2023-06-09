@@ -13,23 +13,15 @@ def test_member_api():
 # Endpoint to retrieve all Members
 @member_api.route("", methods=['GET'])
 def show_all_members():
-    return jsonify(member_controller.get_all_members())
+    return member_controller.get_all_members()
 
 # Endpoint to create a new member
 @member_api.route('', methods=['POST'])
 def create_member():
-
     data = request.get_json()
     name = data['name']
     email = data['email']
-    department = data['department']
-
-    member_controller.create_member(name=name, email=email, department=department)
-    member_controller.add_member_to_team(email=email, department=department)
-
-    return jsonify({
-        "msg" : "successfully created member"
-    })
+    return member_controller.create_member(name, email)
 
 # Endpoint to retrieve a specific member by ID
 @member_api.route('/<id>', methods=['GET'])

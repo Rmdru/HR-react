@@ -12,13 +12,11 @@ function MemberCreateModal() {
     let data = JSON.stringify({
       "name": memberName,
       "email": memberEmail,
-      "department": memberTeam
     });
     
     let config = {
       method: 'post',
-      maxBodyLength: Infinity,
-      url: 'http://127.0.0.1:5000/api/members/create',
+      url: 'http://127.0.0.1:5000/api/members',
       headers: { 
         'Content-Type': 'application/json'
       },
