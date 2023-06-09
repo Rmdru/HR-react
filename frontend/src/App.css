@@ -225,9 +225,9 @@ button {
 }
 
 .logout-button {
-    width: auto; /* Specify the desired width for the logout button */
-    margin-left: auto; /* Add this line to align the button to the right */
-    margin-right: auto; /* Align the button to the left */
-
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 

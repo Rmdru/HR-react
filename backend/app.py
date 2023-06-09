@@ -45,8 +45,6 @@ if __name__ == "__main__":
     # from models.SurveyModel import Survey
     # from models.QuestionModel import Question
     # from models.UserTeamModel import UserTeam
-    from routes.TeamRoutes import team_api
-    from routes.QuestionRoutes import question_api
 
     with app.app_context():
         # Apply any necessary database migrations
