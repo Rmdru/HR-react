@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import QuestionCreateModal from "../../components/Questions/QuestionCreateModal";
 import QuestionEditModal from "../../components/Questions/QuestionEditModal";
+import SurveyEditModal from "../../components/Surveys/SurveyEditModal";
 import axios from "axios";
 
 function SurveyList() {

@@ -22,7 +22,6 @@ function App() {
     <>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossOrigin="anonymous" />
-    <Header />
     {!isAnswerPage && <Header />}
     <Routes>
       <Route path="/" index element={<Overview />} />
@@ -33,7 +32,7 @@ function App() {
       <Route path="/teams" element={<TeamPage />} />
       <Route path="/vragen" element={<QuestionPage />} />
       <Route path="/rapportages" element={<Reports />} />
-      <Route path="/vragenlijst/*" element={<AnswerPage />} /
+      <Route path="/vragenlijst/*" element={<AnswerPage />} />
       <Route path="/antwoorden" element={<AnswerAdminPage/>}/>
       <Route path="/*" element={<NotFound />} />
     </Routes>
