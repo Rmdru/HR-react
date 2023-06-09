@@ -9,11 +9,9 @@ geven op vragen rond hun project, zoals hun eigen functioneren als het functione
 
 Deze repository bevat een Flask & React applicatie met: 
 - Een database
-- Templates
 - De Flask server
 - De React JS server
 - De React Native app
-- JavaScript en HTML / CSS
 
 ## Hoe de webapplicatie te starten? - Flask
 
@@ -43,17 +41,28 @@ De code is geschreven in Python 3.11.1
 
 ## Hoe de webapplicatie te starten? - React JS
 
+Om React JS te kunnen starten zullen eerst de packages 
+moeten worden geïnstalleerd. 
+
+In requirements.txt staan alle benodigde packages 
+om de code succesvol te draaien. 
+
+Om de applicatie te starten: 
+``` 
+cd frontend
+npm start
+```
 
 ## Hoe in te loggen? Inloggegevens:
 
 Er kan als beheerder ingelogd worden met de volgende inloggegevens: 
 ```
-Gebruikersnaam: ???@???.com 
+Gebruikersnaam: ?????@?????.com 
 Wachtwoord: test
 ```
 Er kan als teamlid ingelogd worden met de volgende inloggegevens:
 ```
-Gebruikersnaam: ???@???.com 
+Gebruikersnaam: ?????@?????.com 
 Wachtwoord: test
 ```
 
@@ -64,10 +73,11 @@ teamleden een nieuw account kunnen aanmaken.
 
 ## Structuur
 
-De Model-View-Controller (MVC) structuur is gebruikt.
-- Model bestanden zitten in de folder models
-- Controller bestanden zitten in de folder controllers
-- View bestanden zitten in de folder templates
+De Model-View-Controller (MVC) structuur is gebruikt en opgesplitst in een backend folder (Flask) en een frontend folder (React JS).
+- Model bestanden zitten in de backend folder in de folder models
+- Controller bestanden zitten in de backend folder in de folder controllers en in de folder routes
+- View bestanden zitten in de frontend folder in de folder components en in de folder pages
+- View bestanden zitten ook in de mobile folder (React Native) voor op smartphones
 
 ## Ontwikkelaars van de webapplicatie
 
