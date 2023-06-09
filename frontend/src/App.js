@@ -13,6 +13,7 @@ import {Header} from "./components/Partials/Header/Header.js"
 import AnswerPage from "./pages/Answer/AnswerPage"
 import AnswerAdminPage from "./pages/Answer/AnswerAdminPage";
 import './App.css';
+import Logout from "./pages/Logout/Logout";
 
 function App() {
   const location = useLocation();
@@ -35,6 +36,7 @@ function App() {
       <Route path="/vragenlijst/*" element={<AnswerPage />} />
       <Route path="/antwoorden" element={<AnswerAdminPage/>}/>
       <Route path="/*" element={<NotFound />} />
+      <Route path="/uitloggen" element={<Logout />} />
     </Routes>
     </>
   );

@@ -25,6 +25,9 @@ db.init_app(app)
 migrate.init_app(app, db)
 CORS(app)
 
+# Secret key for the session
+app.secret_key = '1335eb3948fb7b64a029aa29'
+
 
 # Shell context processor for Flask shell
 @app.shell_context_processor
@@ -41,8 +44,8 @@ if __name__ == "__main__":
     # from models.SurveyModel import Survey
     # from models.QuestionModel import Question
     # from models.UserTeamModel import UserTeam
-    from routes.TeamRoutes import team_api
-    from routes.QuestionRoutes import question_api
+    # from routes.TeamRoutes import team_api
+    # from routes.QuestionRoutes import question_api
 
     with app.app_context():
         # Apply any necessary database migrations
@@ -55,9 +58,10 @@ if __name__ == "__main__":
     from routes.TeamRoutes import team_api
     from routes.QuestionRoutes import question_api
     from routes.AnswerRoutes import answer_api
+    from routes.UserRoutes import user_api
 
     # Register the blueprints
-    blueprint_name = [member_api, survey_api, team_api, question_api, answer_api]
+    blueprint_name = [member_api, survey_api, team_api, question_api, user_api, answer_api]
     for name in blueprint_name:
         app.register_blueprint(name)
 

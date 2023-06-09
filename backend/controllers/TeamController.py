@@ -5,6 +5,7 @@ from flask import jsonify, request, redirect, url_for
 """ This class handles the logic and operations related to the teams of the application.
     It provides methods to retrieve, create, update, and delete teams. """
 
+
 class TeamController():
 
     # Retrieve all teams from the database

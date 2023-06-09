@@ -1,6 +1,7 @@
 # Import the os module for operating system-related functionalities
 import os
 
+
 # Configuration class for the Flask application.
 class Config:
 
@@ -27,3 +28,5 @@ class Config:
     surveys_api_prefix = "/api/surveys"
     # Prefix for survey-related API endpoints
     answers_api_prefix = "/api/answers"
+    # Prefix for user-related API endpoints
+    users_api_prefix = "/api/users"

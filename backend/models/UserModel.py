@@ -10,7 +10,7 @@ class User(db.Model):
     name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), nullable=False)
     password = db.Column(db.String(255), nullable=True)
-    admin_role = db.Column(db.Boolean, nullable=False)
+    role = db.Column(db.Boolean, nullable=False)
 
     # Convert the User object to a dictionary representation
     def to_dict(self):
@@ -22,6 +22,6 @@ class User(db.Model):
             'name': self.name,
             'email': self.email,
             'password': self.password,
-            'role': self.admin_role,
+            'role': self.role,
             'team_name': team_name
         }

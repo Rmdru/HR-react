@@ -30,10 +30,12 @@ def show_survey(id):
     return SurveyController.show(id)
 
 
+
 # Endpoint to update a specific survey by ID
 @survey_api.route('/<id>', methods=['POST'])
 def update_survey(id):
     return SurveyController.update(id)
+
 
 
 # Endpoint to delete a specific survey by ID
