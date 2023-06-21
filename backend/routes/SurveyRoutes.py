@@ -42,3 +42,8 @@ def update_survey(id):
 @survey_api.route('/<id>', methods=['DELETE'])
 def delete_survey(id):
     return SurveyController.delete(id)
+
+# Endpoint to mail all members of a specific survey
+@survey_api.route('/mail/<id>', methods=['GET'])
+def mail_members(id):
+    return SurveyController.mail_members(id)

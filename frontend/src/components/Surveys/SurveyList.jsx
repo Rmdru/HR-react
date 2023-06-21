@@ -133,6 +133,7 @@ function SurveyList() {
                             <a
                                 href="#"
                                 className="btn btn-success"
+                                onClick={() => sendMail(survey.id)}
                             >
                                 Mails versturen
                             </a>
