@@ -5,7 +5,7 @@ import Accordion from 'react-bootstrap/Accordion'
 function AnswerAdminModal({surveyId, initialQuestions, initialAnswers, initialMembers}) {
 
     const [error, setError] = useState(false);
-    const [questions, setQuestions] = useState(initialQuestions);
+    const [questions, setQuestions] = useState(initialQuestions || []);
     const [answers, setAnswers] = useState(initialAnswers);
     const [members, setMembers] = useState(initialMembers);
 
@@ -36,38 +36,45 @@ function AnswerAdminModal({surveyId, initialQuestions, initialAnswers, initialMe
                         </button>
                     </div>
                     <div className="modal-body">
-                        <Accordion defaultActiveKey="0">
-                          {questions.map((question, index) => (
-                            <Accordion.Item eventKey={index} key={index}>
+                        {initialQuestions && initialQuestions.length === 0 || initialQuestions === undefined ? (
+                          <p>Er zijn geen vragen bij deze vragenlijst.</p>
+                        ) : (
+                          <Accordion defaultActiveKey="0">
+                            {questions.map((question, index) => (
+                              <Accordion.Item eventKey={index} key={index}>
                                 <Accordion.Header>{question.text}</Accordion.Header>
                                 <Accordion.Body>
-                                    {answers.map((answer) => {
-                                        return members.map((member) => {
-                                            if (answer.question_id === question.id && answer.user_id === member.id) {
-                                                return <p style={{ color: 'green' }} key={answer.id}><b>{member.name}:</b> {answer.text}</p>
-                                            }
-                                            return null
-                                        })
-                                    })}
-                                    {/* Check if any member has not filled in the question */}
-                                      {members.map((member) => {
-                                        const isAnswered = answers.some(
-                                          (answer) =>
-                                            answer.question_id === question.id && answer.user_id === member.id
+                                  {answers.map((answer) => {
+                                    return members.map((member) => {
+                                      if (answer.question_id === question.id && answer.user_id === member.id) {
+                                        return (
+                                          <p style={{ color: 'green' }} key={answer.id}>
+                                            <b>{member.name}:</b> {answer.text}
+                                          </p>
                                         );
-                                        if (!isAnswered) {
-                                          return (
-                                            <p key={member.id} style={{ color: 'red' }}>
-                                              <b>{member.name}</b> heeft de vraag nog niet ingevuld.
-                                            </p>
-                                          );
-                                        }
-                                        return null;
-                                      })}
+                                      }
+                                      return null;
+                                    });
+                                  })}
+                                  {/* Check if any member has not filled in the question */}
+                                  {members.map((member) => {
+                                    const isAnswered = answers.some(
+                                      (answer) => answer.question_id === question.id && answer.user_id === member.id
+                                    );
+                                    if (!isAnswered) {
+                                      return (
+                                        <p key={member.id} style={{ color: 'red' }}>
+                                          <b>{member.name}</b> heeft de vraag nog niet ingevuld.
+                                        </p>
+                                      );
+                                    }
+                                    return null;
+                                  })}
                                 </Accordion.Body>
-                            </Accordion.Item>
-                          ))}
-                        </Accordion>
+                              </Accordion.Item>
+                            ))}
+                          </Accordion>
+                        )}
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-dismiss="modal">Sluiten</button>
